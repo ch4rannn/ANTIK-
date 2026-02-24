@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antik Das Gupta — Creative Visual Designer & Video Editor</title>
+  <meta name="description" content="Portfolio of Antik Das Gupta — Creative Visual Designer & Video Editor." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%236366f1%22 /><text x=%2250%%22 y=%2250%%22 dy=%22.35em%22 fill=%22white%22 font-family=%22Inter, sans-serif%22 font-size=%2255%22 text-anchor=%22middle%22 font-weight=%22800%22>A</text></svg>">
+</head>
+
+<body>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">Antik<span class="logo-dot">.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#portfolio">Work</a></li>
+        <li><a href="#portfolio">Photography</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-effects">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-text reveal">
+        <p class="hero-tag">Creative Visual Designer & Video Editor</p>
+        <h1>Crafting <span class="gradient-text">Cinematic</span> Visuals That Tell <span
+            class="gradient-text">Stories</span></h1>
+        <p class="hero-subtitle">I transform ideas into immersive visual experiences — powerful brand stories,
+          emotionally driven content, and cinematic productions.</p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="btn btn-primary"><span>View My Work</span></a>
+          <a href="#contact" class="btn btn-ghost">Let's Talk</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-number">50+</span><span class="stat-label">Projects</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-number">3+</span><span class="stat-label">Years Exp.</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-number">30+</span><span class="stat-label">Clients</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="hero-reel" id="heroReel">
+          <video id="showreelVideo" src="SHOWREEL.mp4" muted loop autoplay playsinline preload="auto"></video>
+          <div class="reel-play-overlay" id="reelPlayOverlay" style="display: none;">
+            <svg viewBox="0 0 64 64" class="reel-play-icon">
+              <circle cx="32" cy="32" r="30" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)"
+                stroke-width="1.5" />
+              <polygon points="26,20 26,44 46,32" fill="rgba(255,255,255,0.85)" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO — VIDEOS & BRANDING -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-tag">Selected Work</p>
+        <h2>Projects I'm <span class="gradient-text">Proud</span> Of</h2>
+      </div>
+      <div class="portfolio-filters reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="video">Videos</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+        <button class="filter-btn" data-filter="photo">Photography</button>
+      </div>
+      <div class="portfolio-grid">
+
+        <!-- VIDEO PROJECTS -->
+        <article class="portfolio-card reveal" data-category="video" data-title="Showreel"
+          data-desc="A compilation of the finest cinematic work across commercial and narrative projects."
+          data-video="VIDEOS/Showreel.mp4">
+          <div class="card-media"><video src="VIDEOS/Showreel.mp4" muted loop preload="metadata"></video></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Video</span>
+              <h3>Showreel</h3>
+              <p>Cinematic compilation</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="video" data-title="Project CMC Teaser"
+          data-desc="A cinematic teaser for Project CMC — high energy, dynamic edits, and premium color grading."
+          data-video="VIDEOS/Project CMC Teaser-Antik45.mp4">
+          <div class="card-media"><video src="VIDEOS/Project CMC Teaser-Antik45.mp4" muted loop
+              preload="metadata"></video></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Video</span>
+              <h3>Project CMC Teaser</h3>
+              <p>Cinematic teaser</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="video" data-title="CU Chapter Teaser"
+          data-desc="Official teaser for CU Chapter — cinematic visual storytelling with powerful motion graphics."
+          data-video="VIDEOS/Teaser CU Chapter_Antik45.mp4">
+          <div class="card-media"><video src="VIDEOS/Teaser CU Chapter_Antik45.mp4" muted loop
+              preload="metadata"></video></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Video</span>
+              <h3>CU Chapter Teaser</h3>
+              <p>Official teaser</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- BRANDING PROJECTS -->
+        <article class="portfolio-card reveal" data-category="branding" data-title="Poster Design — Series"
+          data-desc="A collection of poster designs showcasing brand identity, typography, and visual storytelling."
+          data-img="BRANDING/Poster 15 New.jpg">
+          <div class="card-media"><img src="BRANDING/Poster 15 New.jpg" alt="Poster Design" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Branding</span>
+              <h3>Poster Series</h3>
+              <p>Brand design & typography</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 11"
+          data-desc="Bold poster design with premium visual aesthetics and impactful composition."
+          data-img="BRANDING/Poster 11.jpg">
+          <div class="card-media"><img src="BRANDING/Poster 11.jpg" alt="Poster 11" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Branding</span>
+              <h3>Brand Poster</h3>
+              <p>Visual design</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 16"
+          data-desc="Creative poster design with striking color palette and modern layout."
+          data-img="BRANDING/Poster 16.jpg">
+          <div class="card-media"><img src="BRANDING/Poster 16.jpg" alt="Poster 16" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Branding</span>
+              <h3>Creative Poster</h3>
+              <p>Color & composition</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- MORE VIDEOS -->
+        <article class="portfolio-card card-wide reveal" data-category="video" data-title="Tanay Intro"
+          data-desc="A stylized introduction video featuring dynamic motion and cinematic editing."
+          data-video="VIDEOS/Tanay Intro.mp4">
+          <div class="card-media"><video src="VIDEOS/Tanay Intro.mp4" muted loop preload="metadata"></video></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Video</span>
+              <h3>Tanay Intro</h3>
+              <p>Stylized intro video</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="video" data-title="Cristiano Ronaldo Edit"
+          data-desc="A cinematic sports edit celebrating CR7 — dynamic cuts, color grading, and emotional storytelling."
+          data-video="VIDEOS/cristiano ronaldo.mp4">
+          <div class="card-media"><video src="VIDEOS/cristiano ronaldo.mp4" muted loop preload="metadata"></video></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Video</span>
+              <h3>CR7 — Cinematic Edit</h3>
+              <p>Sports video editing</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="video" data-title="World Cup Video"
+          data-desc="A tribute video capturing the energy and drama of the World Cup — premium editing and grading."
+          data-video="VIDEOS/World Cup Video.mp4">
+          <div class="card-media"><video src="VIDEOS/World Cup Video.mp4" muted loop preload="metadata"></video></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Video</span>
+              <h3>World Cup</h3>
+              <p>Sports montage</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- MORE BRANDING -->
+        <article class="portfolio-card reveal" data-category="branding" data-title="Tanoy Poster"
+          data-desc="Custom poster design for Tanoy — minimalist style with bold typography."
+          data-img="BRANDING/Tanoy 1.jpg">
+          <div class="card-media"><img src="BRANDING/Tanoy 1.jpg" alt="Tanoy Poster" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Branding</span>
+              <h3>Custom Poster</h3>
+              <p>Typography & design</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 9"
+          data-desc="High-impact poster with cinematic visual treatment and premium finish."
+          data-img="BRANDING/Poster 9.jpg">
+          <div class="card-media"><img src="BRANDING/Poster 9.jpg" alt="Poster 9" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Branding</span>
+              <h3>Cinematic Poster</h3>
+              <p>Premium branding</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 13"
+          data-desc="Clean, modern poster design with attention to detail and brand consistency."
+          data-img="BRANDING/Poster 13.jpg">
+          <div class="card-media"><img src="BRANDING/Poster 13.jpg" alt="Poster 13" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Branding</span>
+              <h3>Modern Poster</h3>
+              <p>Clean design</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- MORE VIDEOS -->
+        <article class="portfolio-card card-wide reveal" data-category="video" data-title="Ronaldo Edit"
+          data-desc="Dynamic Ronaldo edit — fast cuts, epic transitions, and cinematic color grading."
+          data-video="VIDEOS/ronaldo edit.mp4">
+          <div class="card-media"><video src="VIDEOS/ronaldo edit.mp4" muted loop preload="metadata"></video></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Video</span>
+              <h3>Ronaldo Edit</h3>
+              <p>Dynamic sports edit</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="video" data-title="CR7 Original Video"
+          data-desc="Original cinematic edit of Cristiano Ronaldo — storytelling through motion."
+          data-video="VIDEOS/CR7 original video 2.mp4">
+          <div class="card-media"><video src="VIDEOS/CR7 original video 2.mp4" muted loop preload="metadata"></video>
+          </div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Video</span>
+              <h3>CR7 Original</h3>
+              <p>Cinematic storytelling</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- MORE BRANDING -->
+        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 17"
+          data-desc="Striking poster with vibrant colors and professional composition."
+          data-img="BRANDING/Poster 17 (1)-01.jpeg">
+          <div class="card-media"><img src="BRANDING/Poster 17 (1)-01.jpeg" alt="Poster 17" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Branding</span>
+              <h3>Vibrant Poster</h3>
+              <p>Striking visuals</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 14"
+          data-desc="Refined poster design with balanced layout and premium aesthetics."
+          data-img="BRANDING/Poster 14.jpg">
+          <div class="card-media"><img src="BRANDING/Poster 14.jpg" alt="Poster 14" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Branding</span>
+              <h3>Refined Poster</h3>
+              <p>Premium design</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PHOTOGRAPHY -->
+        <article class="portfolio-card reveal" data-category="photo" data-title="Landscape Shot"
+          data-desc="Cinematic landscape photography with natural lighting." data-img="Photography/DSC_0501.jpg">
+          <div class="card-media"><img src="Photography/DSC_0501.jpg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Landscape</h3>
+              <p>Natural lighting</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Portrait"
+          data-desc="Cinematic portrait with depth of field." data-img="Photography/DSC_0536.jpg">
+          <div class="card-media"><img src="Photography/DSC_0536.jpg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Portrait</h3>
+              <p>Depth of field</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Street Photography"
+          data-desc="Capturing candid moments in urban settings." data-img="Photography/DSC_0712.jpg">
+          <div class="card-media"><img src="Photography/DSC_0712.jpg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Street</h3>
+              <p>Urban moments</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Nature"
+          data-desc="Nature photography with vivid colors and composition." data-img="Photography/DSC_0845.jpg">
+          <div class="card-media"><img src="Photography/DSC_0845.jpg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Nature</h3>
+              <p>Vivid composition</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card card-wide reveal" data-category="photo" data-title="Cinematic Frame"
+          data-desc="Widescreen cinematic capture with dramatic tones." data-img="Photography/DSC_0946.jpg">
+          <div class="card-media"><img src="Photography/DSC_0946.jpg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Cinematic Frame</h3>
+              <p>Dramatic tones</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Golden Hour"
+          data-desc="Photography during golden hour with warm tones." data-img="Photography/DSC_0960.jpg">
+          <div class="card-media"><img src="Photography/DSC_0960.jpg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Golden Hour</h3>
+              <p>Warm tones</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Moody Portrait"
+          data-desc="Dark, moody portrait photography with dramatic lighting." data-img="Photography/DSC_0963.jpg">
+          <div class="card-media"><img src="Photography/DSC_0963.jpg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Moody Portrait</h3>
+              <p>Dramatic lighting</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Creative Edit"
+          data-desc="Artistic photography with creative color grading." data-img="Photography/DSC_0916-02 (1).jpg">
+          <div class="card-media"><img src="Photography/DSC_0916-02 (1).jpg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Creative Edit</h3>
+              <p>Color grading</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Composition Study"
+          data-desc="Exploring visual balance and composition." data-img="Photography/DSC_0065-02-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_0065-02-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Composition</h3>
+              <p>Visual balance</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Portrait Series"
+          data-desc="Portrait series with consistent aesthetic and grading." data-img="Photography/DSC_0174-01-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_0174-01-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Portrait Series</h3>
+              <p>Consistent aesthetic</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card card-wide reveal" data-category="photo" data-title="Panoramic View"
+          data-desc="Wide-angle panoramic photography." data-img="Photography/DSC_0175-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_0175-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Panoramic View</h3>
+              <p>Wide-angle shot</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Light Study"
+          data-desc="Play of natural and artificial light." data-img="Photography/DSC_0205-01-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_0205-01-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Light Study</h3>
+              <p>Light and shadow</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Outdoor Scene"
+          data-desc="Scenic outdoor photography with rich colors." data-img="Photography/DSC_0315-02.jpeg">
+          <div class="card-media"><img src="Photography/DSC_0315-02.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Outdoor Scene</h3>
+              <p>Rich colors</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Close-Up"
+          data-desc="Detailed close-up with shallow depth of field." data-img="Photography/DSC_0943-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_0943-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Close-Up</h3>
+              <p>Shallow DOF</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Evening Glow"
+          data-desc="Twilight photography with ambient warm glow." data-img="Photography/DSC_1015-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_1015-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Evening Glow</h3>
+              <p>Ambient warmth</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Detail Shot"
+          data-desc="Macro-level detail and texture photography." data-img="Photography/DSC_1035-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_1035-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Detail Shot</h3>
+              <p>Texture & detail</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card card-wide reveal" data-category="photo" data-title="Dramatic Sky"
+          data-desc="Landscape under dramatic sky tones." data-img="Photography/DSC_1081-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_1081-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Dramatic Sky</h3>
+              <p>Sky tones</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Candid Moment"
+          data-desc="Authentic candid photography." data-img="Photography/DSC_1087-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_1087-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Candid</h3>
+              <p>Authentic moments</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Silhouette"
+          data-desc="Bold silhouette photography with contrasting light." data-img="Photography/DSC_1097-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_1097-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Silhouette</h3>
+              <p>Contrasting light</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Bokeh"
+          data-desc="Beautiful bokeh and light effects." data-img="Photography/DSC_1144-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_1144-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Bokeh</h3>
+              <p>Light effects</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Blue Hour"
+          data-desc="Photography during blue hour with cool tones." data-img="Photography/DSC_1151-01.jpeg">
+          <div class="card-media"><img src="Photography/DSC_1151-01.jpeg" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Blue Hour</h3>
+              <p>Cool tones</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Event Photography"
+          data-desc="Professional event capture." data-img="Photography/IMG_5409.JPG">
+          <div class="card-media"><img src="Photography/IMG_5409.JPG" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Event</h3>
+              <p>Professional capture</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Creative Portrait"
+          data-desc="Artistic portrait with unique framing." data-img="Photography/IMG_5349.JPG">
+          <div class="card-media"><img src="Photography/IMG_5349.JPG" alt="Photography" loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Creative Portrait</h3>
+              <p>Unique framing</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Edited Art"
+          data-desc="Artistic photo manipulation and retouching."
+          data-img="Photography/Picsart_23-01-30_20-16-07-796.jpg">
+          <div class="card-media"><img src="Photography/Picsart_23-01-30_20-16-07-796.jpg" alt="Photography"
+              loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Edited Art</h3>
+              <p>Photo manipulation</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Color Grade"
+          data-desc="Photo with cinematic color grading."
+          data-img="Photography/Picsart_23-02-04_21-32-38-479-01-01.jpeg">
+          <div class="card-media"><img src="Photography/Picsart_23-02-04_21-32-38-479-01-01.jpeg" alt="Photography"
+              loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Color Grade</h3>
+              <p>Cinematic tones</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Artistic Edit"
+          data-desc="Creative art direction and visual editing."
+          data-img="Photography/Picsart_23-05-17_04-40-20-016.jpg">
+          <div class="card-media"><img src="Photography/Picsart_23-05-17_04-40-20-016.jpg" alt="Photography"
+              loading="lazy" /></div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Artistic Edit</h3>
+              <p>Art direction</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card card-wide reveal" data-category="photo" data-title="Winter Scene"
+          data-desc="Festive winter photography with natural lighting." data-img="Photography/IMG_20201225_174611.jpg">
+          <div class="card-media"><img src="Photography/IMG_20201225_174611.jpg" alt="Photography" loading="lazy" />
+          </div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Winter Scene</h3>
+              <p>Festive capture</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Documentary"
+          data-desc="Documentary-style photography." data-img="Photography/IMG_20201226_171008.jpg">
+          <div class="card-media"><img src="Photography/IMG_20201226_171008.jpg" alt="Photography" loading="lazy" />
+          </div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Documentary</h3>
+              <p>Raw storytelling</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Heritage"
+          data-desc="Heritage and cultural photography." data-img="Photography/IMG_20221222_113053-01.jpeg">
+          <div class="card-media"><img src="Photography/IMG_20221222_113053-01.jpeg" alt="Photography" loading="lazy" />
+          </div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Heritage</h3>
+              <p>Cultural capture</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card reveal" data-category="photo" data-title="Travel"
+          data-desc="Travel photography with vivid storytelling." data-img="Photography/IMG_20201227_163822.jpg">
+          <div class="card-media"><img src="Photography/IMG_20201227_163822.jpg" alt="Photography" loading="lazy" />
+          </div>
+          <div class="card-overlay">
+            <div class="card-info"><span class="card-category">Photography</span>
+              <h3>Travel</h3>
+              <p>Vivid storytelling</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container about-layout">
+      <div class="about-portrait reveal">
+        <div class="portrait-frame">
+          <img src="PROFILE.JPEG" alt="Antik Das Gupta" class="portrait-img" />
+          <div class="portrait-border"></div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <p class="section-tag">About Me</p>
+        <h2>I'm <span class="gradient-text">Antik</span></h2>
+        <p class="about-bio">A visual designer and video editor with a deep passion for cinematic storytelling. I
+          transform ideas into immersive visual experiences that leave lasting impressions.</p>
+        <p class="about-bio">With years of experience across branding, color grading, and motion design, I bring a
+          meticulous eye for detail and an unwavering commitment to quality.</p>
+        <div class="about-details">
+          <div class="detail"><span class="detail-label">Based in</span><span class="detail-value">India</span></div>
+          <div class="detail"><span class="detail-label">Speciality</span><span class="detail-value">Cinematic
+              Visuals</span></div>
+          <div class="detail"><span class="detail-label">Available</span><span class="detail-value">Freelance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-tag">Expertise</p>
+        <h2>Skills & <span class="gradient-text">Tools</span></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <h3>Video & Motion</h3>
+          <ul>
+            <li>Cinematic Color Grading</li>
+            <li>Video Editing & Post-Production</li>
+            <li>Motion Graphics</li>
+            <li>Sound Design Integration</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Design & Branding</h3>
+          <ul>
+            <li>Brand Identity Design</li>
+            <li>Visual Storytelling</li>
+            <li>Photo Composition</li>
+            <li>UI & Layout Design</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tools-row reveal">
+        <div class="tool-chip"><span class="tool-abbr">Ps</span>Photoshop</div>
+        <div class="tool-chip"><span class="tool-abbr">Lr</span>Lightroom</div>
+        <div class="tool-chip"><span class="tool-abbr">Pr</span>Premiere Pro</div>
+        <div class="tool-chip"><span class="tool-abbr">Ae</span>After Effects</div>
+        <div class="tool-chip"><span class="tool-abbr">Da</span>DaVinci Resolve</div>
+        <div class="tool-chip"><span class="tool-abbr">Fi</span>Figma</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container contact-layout">
+      <div class="contact-info reveal">
+        <p class="section-tag">Get in Touch</p>
+        <h2>Let's Create Something <span class="gradient-text">Amazing</span></h2>
+        <p class="contact-subtitle">Have a project in mind? Drop me a message and I'll get back to you within 24 hours.
+        </p>
+      </div>
+      <div class="contact-form-wrapper reveal">
+        <form class="contact-form" id="contactForm">
+          <div class="form-group"><input type="text" id="name" placeholder="Your Name" required /></div>
+          <div class="form-group"><input type="email" id="email" placeholder="Your Email" required /></div>
+          <div class="form-group"><textarea id="message" rows="5" placeholder="Tell me about your project..."
+              required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-full"><span>Send Message</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Antik Das Gupta</span>
+      <span class="footer-copy">&copy; 2026 All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal-backdrop" id="projectModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-media" id="modalMedia"></div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Photo" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
