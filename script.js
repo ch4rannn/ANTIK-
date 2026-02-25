@@ -43,18 +43,25 @@
   const showreelVideo = document.getElementById('showreelVideo');
   const reelOverlay = document.getElementById('reelPlayOverlay');
   if (heroReel && showreelVideo) {
-    // Ensure autoplay starts at 0.2s
-    showreelVideo.addEventListener('play', () => {
-      if (showreelVideo.currentTime < 0.2) showreelVideo.currentTime = 0.2;
-    }, { once: true });
+    // Force initial frame to avoid black starting screen
+    showreelVideo.addEventListener('loadedmetadata', () => {
+      showreelVideo.currentTime = 0.2;
+    });
+
+    // Handle play state for the overlay button
+    showreelVideo.addEventListener('playing', () => {
+      heroReel.classList.add('playing');
+    });
+
+    showreelVideo.addEventListener('pause', () => {
+      heroReel.classList.remove('playing');
+    });
 
     heroReel.addEventListener('click', () => {
       if (showreelVideo.paused) {
         showreelVideo.play();
-        heroReel.classList.add('playing');
       } else {
         showreelVideo.pause();
-        heroReel.classList.remove('playing');
       }
     });
   }
