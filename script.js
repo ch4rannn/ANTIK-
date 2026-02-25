@@ -4,20 +4,6 @@
 (function () {
   'use strict';
 
-  // ─── CURSOR GLOW ───
-  const glow = document.getElementById('cursorGlow');
-  if (glow && window.matchMedia('(pointer: fine)').matches) {
-    let mx = 0, my = 0, gx = 0, gy = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function animate() {
-      gx += (mx - gx) * 0.12;
-      gy += (my - gy) * 0.12;
-      glow.style.left = gx + 'px';
-      glow.style.top = gy + 'px';
-      requestAnimationFrame(animate);
-    })();
-  } else if (glow) glow.style.display = 'none';
-
   // ─── NAVBAR SCROLL ───
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -188,7 +174,7 @@
     const btn = form.querySelector('.btn-primary');
     const orig = btn.innerHTML;
     btn.innerHTML = '<span>Sent! ✓</span>';
-    btn.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+    btn.style.background = 'var(--primary)';
     setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; form.reset(); }, 2500);
   });
 
@@ -201,46 +187,4 @@
     });
   });
 
-  // ─── PARTICLE BACKGROUND ───
-  const canvas = document.createElement('canvas');
-  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0.4';
-  document.body.prepend(canvas);
-  const ctx = canvas.getContext('2d');
-  let w, h, particles = [];
-  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-
-  class P {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * w; this.y = Math.random() * h;
-      this.s = Math.random() * 1.5 + 0.5;
-      this.vx = (Math.random() - 0.5) * 0.3;
-      this.vy = (Math.random() - 0.5) * 0.3;
-      this.o = Math.random() * 0.5 + 0.1;
-    }
-    update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset(); }
-    draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, Math.PI * 2); ctx.fillStyle = `rgba(99,102,241,${this.o})`; ctx.fill(); }
-  }
-  for (let i = 0; i < 50; i++) particles.push(new P());
-
-  (function loop() {
-    ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => { p.update(); p.draw(); });
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 120) {
-          ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(99,102,241,${0.06 * (1 - d / 120)})`;
-          ctx.lineWidth = 0.5; ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(loop);
-  })();
-
-})();
+  
