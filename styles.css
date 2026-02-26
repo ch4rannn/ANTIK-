@@ -2,19 +2,21 @@
    DESIGN TOKENS
    ═══════════════════════════════════════════ */
 :root {
-  --bg-primary: #1C1C1C;
-  --bg-secondary: #242424;
-  --bg-card: #2A2A2A;
-  --text-primary: #EAEAEA;
-  --text-secondary: #A0A0A0;
-  --accent-1: #B08968;
-  --primary: #1B4332;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  --bg-primary: #08080c;
+  --bg-secondary: #0e0e14;
+  --bg-card: #14141c;
+  --text-primary: #f0f0f5;
+  --text-secondary: #8888a0;
+  --accent-1: #6366f1;
+  --accent-2: #a855f7;
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --dur: 500ms;
-  --radius: 8px;
-  --radius-lg: 12px;
+  --radius: 16px;
+  --radius-lg: 24px;
   --max-w: 1200px;
   --section-py: 140px;
 }
@@ -87,7 +89,10 @@ h3 {
 
 /* ═══════════ UTILITIES ═══════════ */
 .gradient-text {
-  color: var(--accent-1);
+  background: var(--accent-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent
 }
 
 .section-tag {
@@ -107,6 +112,15 @@ h3 {
 /* ═══════════ CURSOR GLOW ═══════════ */
 .cursor-glow {
   display: none;
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.07) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s
 }
 
 /* ═══════════ NAVBAR ═══════════ */
@@ -222,18 +236,38 @@ h3 {
 
 .hero-bg-effects {
   display: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden
 }
 
 .hero-orb {
   display: none;
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+  animation: orbFloat 8s ease-in-out infinite
 }
 
 .hero-orb-1 {
   display: none;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(176, 137, 104, 0.3), transparent 70%);
+  top: -10%;
+  right: -5%;
+  animation-delay: 0s
 }
 
 .hero-orb-2 {
   display: none;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25), transparent 70%);
+  bottom: 0;
+  left: -10%;
+  animation-delay: -4s
 }
 
 @keyframes orbFloat {
@@ -297,7 +331,10 @@ h3 {
   display: block;
   font-size: 32px;
   font-weight: 800;
-  color: var(--accent-1);
+  background: var(--accent-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent
 }
 
 .stat-label {
@@ -337,6 +374,18 @@ h3 {
 
 .hero-reel::after {
   display: none;
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(176, 137, 104, 0.3), transparent 50%, rgba(168, 85, 247, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3
 }
 
 .reel-play-overlay {
@@ -394,15 +443,14 @@ h3 {
 }
 
 .btn-primary {
-  background: var(--primary);
+  background: var(--accent-1);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.25)
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  background: #235A43;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 40px rgba(99, 102, 241, 0.4)
 }
 
 .btn-ghost {
@@ -698,7 +746,10 @@ h3 {
 .portrait-initials {
   font-size: 56px;
   font-weight: 800;
-  color: var(--accent-1);
+  background: var(--accent-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent
 }
 
 .about-content h2 {
