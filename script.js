@@ -212,169 +212,186 @@
     });
   });
 
-  // ─── WEBGL LIGHTNING SHADER BACKGROUND ───
-  // Extracted from hero-odyssey React component, adapted for vanilla JS
-  // Uses GPU-accelerated fractal Brownian motion for real-time procedural lightning
-  const glCanvas = document.createElement('canvas');
-  glCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;';
-  document.body.prepend(glCanvas);
+  // ─── WEBGL LIGHTNING SHADER — HERO ONLY ───
+  const heroSection = document.getElementById('hero');
+  if (heroSection) {
+    const glCanvas = document.createElement('canvas');
+    glCanvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';
+    heroSection.insertBefore(glCanvas, heroSection.firstChild);
 
-  function resizeGL() {
-    glCanvas.width = glCanvas.clientWidth;
-    glCanvas.height = glCanvas.clientHeight;
-  }
-  resizeGL();
-  window.addEventListener('resize', resizeGL);
+    // Slider controls
+    let currentHue = 30;
+    let currentIntensity = 0.5;
+    const hueSlider = document.getElementById('lightningHue');
+    const hueLabel = document.getElementById('hueValue');
+    const intensitySlider = document.getElementById('lightningIntensity');
 
-  const gl = glCanvas.getContext('webgl');
-  if (gl) {
-    // ── Shader source ──
-    const vertSrc = `
-      attribute vec2 aPosition;
-      void main() { gl_Position = vec4(aPosition, 0.0, 1.0); }
-    `;
-
-    const fragSrc = `
-      precision mediump float;
-      uniform vec2 iResolution;
-      uniform float iTime;
-
-      #define OCTAVE_COUNT 10
-
-      // HSV to RGB conversion
-      vec3 hsv2rgb(vec3 c) {
-        vec3 rgb = clamp(abs(mod(c.x * 6.0 + vec3(0.0,4.0,2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
-        return c.z * mix(vec3(1.0), rgb, c.y);
-      }
-
-      float hash11(float p) {
-        p = fract(p * .1031);
-        p *= p + 33.33;
-        p *= p + p;
-        return fract(p);
-      }
-
-      float hash12(vec2 p) {
-        vec3 p3 = fract(vec3(p.xyx) * .1031);
-        p3 += dot(p3, p3.yzx + 33.33);
-        return fract((p3.x + p3.y) * p3.z);
-      }
-
-      mat2 rotate2d(float theta) {
-        float c = cos(theta);
-        float s = sin(theta);
-        return mat2(c, -s, s, c);
-      }
-
-      float noise(vec2 p) {
-        vec2 ip = floor(p);
-        vec2 fp = fract(p);
-        float a = hash12(ip);
-        float b = hash12(ip + vec2(1.0, 0.0));
-        float c = hash12(ip + vec2(0.0, 1.0));
-        float d = hash12(ip + vec2(1.0, 1.0));
-        vec2 t = smoothstep(0.0, 1.0, fp);
-        return mix(mix(a, b, t.x), mix(c, d, t.x), t.y);
-      }
-
-      float fbm(vec2 p) {
-        float value = 0.0;
-        float amplitude = 0.5;
-        for (int i = 0; i < OCTAVE_COUNT; ++i) {
-          value += amplitude * noise(p);
-          p *= rotate2d(0.45);
-          p *= 2.0;
-          amplitude *= 0.5;
-        }
-        return value;
-      }
-
-      void main() {
-        vec2 uv = gl_FragCoord.xy / iResolution.xy;
-        uv = 2.0 * uv - 1.0;
-        uv.x *= iResolution.x / iResolution.y;
-
-        // === BRONZE/GREEN DUAL LIGHTNING ===
-
-        // Lightning bolt 1: Center — warm bronze (hue ~30)
-        vec2 uv1 = uv;
-        uv1 += 2.0 * fbm(uv1 * 1.8 + 0.8 * iTime * 1.2) - 1.0;
-        float dist1 = abs(uv1.x);
-        vec3 bronzeColor = hsv2rgb(vec3(30.0 / 360.0, 0.65, 0.85));
-        vec3 col1 = bronzeColor * pow(mix(0.0, 0.07, hash11(iTime * 1.2)) / dist1, 1.0) * 0.5;
-
-        // Lightning bolt 2: Offset left — forest green (hue ~150)
-        vec2 uv2 = uv;
-        uv2.x += 1.5;
-        uv2 += 2.0 * fbm(uv2 * 2.0 + 0.8 * iTime * 0.9) - 1.0;
-        float dist2 = abs(uv2.x);
-        vec3 greenColor = hsv2rgb(vec3(150.0 / 360.0, 0.6, 0.7));
-        vec3 col2 = greenColor * pow(mix(0.0, 0.06, hash11(iTime * 0.9 + 1.0)) / dist2, 1.0) * 0.35;
-
-        // Lightning bolt 3: Offset right — warm gold (hue ~45)
-        vec2 uv3 = uv;
-        uv3.x -= 1.5;
-        uv3 += 2.0 * fbm(uv3 * 1.6 + 0.8 * iTime * 1.0) - 1.0;
-        float dist3 = abs(uv3.x);
-        vec3 goldColor = hsv2rgb(vec3(45.0 / 360.0, 0.5, 0.75));
-        vec3 col3 = goldColor * pow(mix(0.0, 0.05, hash11(iTime * 1.0 + 2.0)) / dist3, 1.0) * 0.3;
-
-        // Combine all bolts
-        vec3 col = col1 + col2 + col3;
-        col = pow(col, vec3(1.0));
-
-        gl_FragColor = vec4(col, 1.0);
-      }
-    `;
-
-    // ── Compile shaders ──
-    function compileShader(src, type) {
-      const shader = gl.createShader(type);
-      gl.shaderSource(shader, src);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error('Shader error:', gl.getShaderInfoLog(shader));
-        gl.deleteShader(shader);
-        return null;
-      }
-      return shader;
+    if (hueSlider) {
+      hueSlider.addEventListener('input', e => {
+        currentHue = Number(e.target.value);
+        if (hueLabel) hueLabel.textContent = currentHue + '°';
+      });
+    }
+    if (intensitySlider) {
+      intensitySlider.addEventListener('input', e => {
+        currentIntensity = Number(e.target.value) / 100;
+      });
     }
 
-    const vs = compileShader(vertSrc, gl.VERTEX_SHADER);
-    const fs = compileShader(fragSrc, gl.FRAGMENT_SHADER);
+    function resizeGL() {
+      glCanvas.width = glCanvas.clientWidth;
+      glCanvas.height = glCanvas.clientHeight;
+    }
+    resizeGL();
+    window.addEventListener('resize', resizeGL);
 
-    if (vs && fs) {
-      const program = gl.createProgram();
-      gl.attachShader(program, vs);
-      gl.attachShader(program, fs);
-      gl.linkProgram(program);
+    const gl = glCanvas.getContext('webgl');
+    if (gl) {
+      const vertSrc = `
+        attribute vec2 aPosition;
+        void main() { gl_Position = vec4(aPosition, 0.0, 1.0); }
+      `;
 
-      if (gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        gl.useProgram(program);
+      const fragSrc = `
+        precision mediump float;
+        uniform vec2 iResolution;
+        uniform float iTime;
+        uniform float uHue;
+        uniform float uIntensity;
 
-        // Full-screen quad
-        const verts = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
-        const buf = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-        gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
+        #define OCTAVE_COUNT 10
 
-        const aPos = gl.getAttribLocation(program, 'aPosition');
-        gl.enableVertexAttribArray(aPos);
-        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+        vec3 hsv2rgb(vec3 c) {
+          vec3 rgb = clamp(abs(mod(c.x * 6.0 + vec3(0.0,4.0,2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
+          return c.z * mix(vec3(1.0), rgb, c.y);
+        }
 
-        const uRes = gl.getUniformLocation(program, 'iResolution');
-        const uTime = gl.getUniformLocation(program, 'iTime');
+        float hash11(float p) {
+          p = fract(p * .1031);
+          p *= p + 33.33;
+          p *= p + p;
+          return fract(p);
+        }
 
-        const startTime = performance.now();
+        float hash12(vec2 p) {
+          vec3 p3 = fract(vec3(p.xyx) * .1031);
+          p3 += dot(p3, p3.yzx + 33.33);
+          return fract((p3.x + p3.y) * p3.z);
+        }
 
-        (function renderLoop() {
-          resizeGL();
-          gl.viewport(0, 0, glCanvas.width, glCanvas.height);
-          gl.uniform2f(uRes, glCanvas.width, glCanvas.height);
-          gl.uniform1f(uTime, (performance.now() - startTime) / 1000.0);
-          gl.drawArrays(gl.TRIANGLES, 0, 6);
-          requestAnimationFrame(renderLoop);
-        })();
+        mat2 rotate2d(float theta) {
+          float c = cos(theta);
+          float s = sin(theta);
+          return mat2(c, -s, s, c);
+        }
+
+        float noise(vec2 p) {
+          vec2 ip = floor(p);
+          vec2 fp = fract(p);
+          float a = hash12(ip);
+          float b = hash12(ip + vec2(1.0, 0.0));
+          float c = hash12(ip + vec2(0.0, 1.0));
+          float d = hash12(ip + vec2(1.0, 1.0));
+          vec2 t = smoothstep(0.0, 1.0, fp);
+          return mix(mix(a, b, t.x), mix(c, d, t.x), t.y);
+        }
+
+        float fbm(vec2 p) {
+          float value = 0.0;
+          float amplitude = 0.5;
+          for (int i = 0; i < OCTAVE_COUNT; ++i) {
+            value += amplitude * noise(p);
+            p *= rotate2d(0.45);
+            p *= 2.0;
+            amplitude *= 0.5;
+          }
+          return value;
+        }
+
+        void main() {
+          vec2 uv = gl_FragCoord.xy / iResolution.xy;
+          uv = 2.0 * uv - 1.0;
+          uv.x *= iResolution.x / iResolution.y;
+
+          // Main bolt — user-controlled hue
+          vec2 uv1 = uv;
+          uv1 += 2.0 * fbm(uv1 * 1.8 + 0.8 * iTime * 1.2) - 1.0;
+          float dist1 = abs(uv1.x);
+          vec3 mainColor = hsv2rgb(vec3(uHue / 360.0, 0.7, 0.85));
+          vec3 col1 = mainColor * pow(mix(0.0, 0.07, hash11(iTime * 1.2)) / dist1, 1.0) * uIntensity;
+
+          // Secondary bolt — complementary hue, offset left
+          vec2 uv2 = uv;
+          uv2.x += 1.5;
+          uv2 += 2.0 * fbm(uv2 * 2.0 + 0.8 * iTime * 0.9) - 1.0;
+          float dist2 = abs(uv2.x);
+          vec3 secColor = hsv2rgb(vec3(mod(uHue + 120.0, 360.0) / 360.0, 0.6, 0.7));
+          vec3 col2 = secColor * pow(mix(0.0, 0.06, hash11(iTime * 0.9 + 1.0)) / dist2, 1.0) * uIntensity * 0.6;
+
+          // Tertiary bolt — analogous hue, offset right
+          vec2 uv3 = uv;
+          uv3.x -= 1.5;
+          uv3 += 2.0 * fbm(uv3 * 1.6 + 0.8 * iTime * 1.0) - 1.0;
+          float dist3 = abs(uv3.x);
+          vec3 terColor = hsv2rgb(vec3(mod(uHue + 30.0, 360.0) / 360.0, 0.5, 0.75));
+          vec3 col3 = terColor * pow(mix(0.0, 0.05, hash11(iTime * 1.0 + 2.0)) / dist3, 1.0) * uIntensity * 0.5;
+
+          vec3 col = col1 + col2 + col3;
+          gl_FragColor = vec4(col, 1.0);
+        }
+      `;
+
+      function compileShader(src, type) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, src);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.error('Shader error:', gl.getShaderInfoLog(shader));
+          gl.deleteShader(shader);
+          return null;
+        }
+        return shader;
+      }
+
+      const vs = compileShader(vertSrc, gl.VERTEX_SHADER);
+      const fs = compileShader(fragSrc, gl.FRAGMENT_SHADER);
+
+      if (vs && fs) {
+        const program = gl.createProgram();
+        gl.attachShader(program, vs);
+        gl.attachShader(program, fs);
+        gl.linkProgram(program);
+
+        if (gl.getProgramParameter(program, gl.LINK_STATUS)) {
+          gl.useProgram(program);
+
+          const verts = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
+          const buf = gl.createBuffer();
+          gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+          gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
+
+          const aPos = gl.getAttribLocation(program, 'aPosition');
+          gl.enableVertexAttribArray(aPos);
+          gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+          const uRes = gl.getUniformLocation(program, 'iResolution');
+          const uTime = gl.getUniformLocation(program, 'iTime');
+          const uHue = gl.getUniformLocation(program, 'uHue');
+          const uIntensity = gl.getUniformLocation(program, 'uIntensity');
+
+          const startTime = performance.now();
+
+          (function renderLoop() {
+            resizeGL();
+            gl.viewport(0, 0, glCanvas.width, glCanvas.height);
+            gl.uniform2f(uRes, glCanvas.width, glCanvas.height);
+            gl.uniform1f(uTime, (performance.now() - startTime) / 1000.0);
+            gl.uniform1f(uHue, currentHue);
+            gl.uniform1f(uIntensity, currentIntensity);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            requestAnimationFrame(renderLoop);
+          })();
+        }
       }
     }
   }

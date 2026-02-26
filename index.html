@@ -36,10 +36,19 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="hero">
+  <section class="hero" id="hero" style="position:relative;overflow:hidden;">
     <div class="hero-bg-effects">
       <div class="hero-orb hero-orb-1"></div>
       <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <!-- Lightning Controls -->
+    <div id="lightningControls" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:20;display:flex;gap:24px;align-items:center;background:rgba(0,0,0,0.5);backdrop-filter:blur(12px);padding:10px 24px;border-radius:50px;border:1px solid rgba(255,255,255,0.08);">
+      <label style="color:rgba(255,255,255,0.5);font-size:12px;letter-spacing:0.05em;text-transform:uppercase;">Hue</label>
+      <input type="range" id="lightningHue" min="0" max="360" value="30" style="width:100px;accent-color:#B08968;cursor:pointer;">
+      <span id="hueValue" style="color:rgba(255,255,255,0.6);font-size:12px;font-family:monospace;min-width:32px;">30°</span>
+      <div style="width:1px;height:16px;background:rgba(255,255,255,0.15);"></div>
+      <label style="color:rgba(255,255,255,0.5);font-size:12px;letter-spacing:0.05em;text-transform:uppercase;">Glow</label>
+      <input type="range" id="lightningIntensity" min="10" max="100" value="50" style="width:80px;accent-color:#B08968;cursor:pointer;">
     </div>
     <div class="container hero-content">
       <div class="hero-text reveal">
