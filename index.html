@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%236366f1%22 /><text x=%2250%%22 y=%2250%%22 dy=%22.35em%22 fill=%22white%22 font-family=%22Inter, sans-serif%22 font-size=%2255%22 text-anchor=%22middle%22 font-weight=%22800%22>A</text></svg>">
 </head>
@@ -28,7 +29,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#hero">Home</a></li>
         <li><a href="#portfolio">Work</a></li>
-        <li><a href="#portfolio">Photography</a></li>
+        <li><a href="work.html">Photography</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -43,16 +44,16 @@
     </div>
     <div class="container hero-content">
       <div class="hero-text reveal">
-        <p class="hero-tag">Creative Visual Designer & Video Editor</p>
-        <h1>Crafting <span class="gradient-text">Cinematic</span> Visuals That Tell <span
+        <p class="hero-tag" data-aos="fade-down" data-aos-duration="800">Creative Visual Designer & Video Editor</p>
+        <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Crafting <span class="gradient-text">Cinematic</span> Visuals That Tell <span
             class="gradient-text">Stories</span></h1>
-        <p class="hero-subtitle">I transform ideas into immersive visual experiences — powerful brand stories,
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">I transform ideas into immersive visual experiences — powerful brand stories,
           emotionally driven content, and cinematic productions.</p>
-        <div class="hero-buttons">
+        <div class="hero-buttons" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
           <a href="#portfolio" class="btn btn-primary"><span>View My Work</span></a>
           <a href="#contact" class="btn btn-ghost">Let's Talk</a>
         </div>
-        <div class="hero-stats">
+        <div class="hero-stats" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
           <div class="stat"><span class="stat-number">50+</span><span class="stat-label">Projects</span></div>
           <div class="stat-divider"></div>
           <div class="stat"><span class="stat-number">3+</span><span class="stat-label">Years Exp.</span></div>
@@ -61,7 +62,7 @@
         </div>
       </div>
       <div class="hero-visual reveal">
-        <div class="hero-reel" id="heroReel">
+        <div class="hero-reel" id="heroReel" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="400">
           <video id="showreelVideo" src="SHOWREEL.mp4" muted loop autoplay playsinline preload="auto" poster="assets/posters/SHOWREEL.webp"></video>
           <div class="reel-play-overlay" id="reelPlayOverlay">
             <svg viewBox="0 0 64 64" class="reel-play-icon">
@@ -78,20 +79,14 @@
   <!-- PORTFOLIO — VIDEOS & BRANDING -->
   <section class="portfolio" id="portfolio">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header" data-aos="fade-up" data-aos-duration="800">
         <p class="section-tag">Selected Work</p>
         <h2>Projects I'm <span class="gradient-text">Proud</span> Of</h2>
       </div>
-      <div class="portfolio-filters reveal">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="video">Videos</button>
-        <button class="filter-btn" data-filter="branding">Branding</button>
-        <button class="filter-btn" data-filter="photo">Photography</button>
-      </div>
+
       <div class="portfolio-grid">
 
-        <!-- VIDEO PROJECTS -->
-        <article class="portfolio-card reveal" data-category="video" data-title="Showreel"
+<article class="portfolio-card" data-aos="fade-up" data-aos-duration="800" data-category="video" data-title="Showreel"
           data-desc="A compilation of the finest cinematic work across commercial and narrative projects."
           data-video="VIDEOS/Showreel.mp4">
           <div class="card-media"><video src="VIDEOS/Showreel.mp4"  muted loop preload="none" poster="assets/posters/Showreel.webp"></video></div>
@@ -103,7 +98,7 @@
           </div>
         </article>
 
-        <article class="portfolio-card reveal" data-category="video" data-title="Project CMC Teaser"
+<article class="portfolio-card" data-aos="fade-up" data-aos-duration="800" data-category="video" data-title="Project CMC Teaser"
           data-desc="A cinematic teaser for Project CMC — high energy, dynamic edits, and premium color grading."
           data-video="VIDEOS/Project CMC Teaser-Antik45.mp4">
           <div class="card-media"><video src="VIDEOS/Project CMC Teaser-Antik45.mp4"  muted loop
@@ -116,21 +111,7 @@
           </div>
         </article>
 
-        <article class="portfolio-card reveal" data-category="video" data-title="CU Chapter Teaser"
-          data-desc="Official teaser for CU Chapter — cinematic visual storytelling with powerful motion graphics."
-          data-video="VIDEOS/Teaser CU Chapter_Antik45.mp4">
-          <div class="card-media"><video src="VIDEOS/Teaser CU Chapter_Antik45.mp4"  muted loop
-              preload="none" poster="assets/posters/Teaser CU Chapter_Antik45.webp"></video></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Video</span>
-              <h3>CU Chapter Teaser</h3>
-              <p>Official teaser</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- BRANDING PROJECTS -->
-        <article class="portfolio-card reveal" data-category="branding" data-title="Poster Design — Series"
+<article class="portfolio-card" data-aos="fade-up" data-aos-duration="800" data-category="branding" data-title="Poster Design — Series"
           data-desc="A collection of poster designs showcasing brand identity, typography, and visual storytelling."
           data-img="BRANDING/Poster 15 New.jpg">
           <div class="card-media"><picture>
@@ -145,7 +126,7 @@
           </div>
         </article>
 
-        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 11"
+<article class="portfolio-card" data-aos="fade-up" data-aos-duration="800" data-category="branding" data-title="Poster 11"
           data-desc="Bold poster design with premium visual aesthetics and impactful composition."
           data-img="BRANDING/Poster 11.jpg">
           <div class="card-media"><picture>
@@ -160,163 +141,7 @@
           </div>
         </article>
 
-        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 16"
-          data-desc="Creative poster design with striking color palette and modern layout."
-          data-img="BRANDING/Poster 16.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Poster 16_480w.webp 480w, assets/images/responsive/Poster 16_768w.webp 768w, assets/images/responsive/Poster 16_1024w.webp 1024w, assets/images/responsive/Poster 16_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Poster 16.webp"  alt="Poster 16" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Branding</span>
-              <h3>Creative Poster</h3>
-              <p>Color & composition</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- MORE VIDEOS -->
-        <article class="portfolio-card card-wide reveal" data-category="video" data-title="Tanay Intro"
-          data-desc="A stylized introduction video featuring dynamic motion and cinematic editing."
-          data-video="VIDEOS/Tanay Intro.mp4">
-          <div class="card-media"><video src="VIDEOS/Tanay Intro.mp4"  muted loop preload="none" poster="assets/posters/Tanay Intro.webp"></video></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Video</span>
-              <h3>Tanay Intro</h3>
-              <p>Stylized intro video</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="video" data-title="Cristiano Ronaldo Edit"
-          data-desc="A cinematic sports edit celebrating CR7 — dynamic cuts, color grading, and emotional storytelling."
-          data-video="VIDEOS/cristiano ronaldo.mp4">
-          <div class="card-media"><video src="VIDEOS/cristiano ronaldo.mp4"  muted loop preload="none" poster="assets/posters/cristiano ronaldo.webp"></video></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Video</span>
-              <h3>CR7 — Cinematic Edit</h3>
-              <p>Sports video editing</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="video" data-title="World Cup Video"
-          data-desc="A tribute video capturing the energy and drama of the World Cup — premium editing and grading."
-          data-video="VIDEOS/World Cup Video.mp4">
-          <div class="card-media"><video src="VIDEOS/World Cup Video.mp4"  muted loop preload="none" poster="assets/posters/World Cup Video.webp"></video></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Video</span>
-              <h3>World Cup</h3>
-              <p>Sports montage</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- MORE BRANDING -->
-        <article class="portfolio-card reveal" data-category="branding" data-title="Tanoy Poster"
-          data-desc="Custom poster design for Tanoy — minimalist style with bold typography."
-          data-img="BRANDING/Tanoy 1.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Tanoy 1_480w.webp 480w, assets/images/responsive/Tanoy 1_768w.webp 768w, assets/images/responsive/Tanoy 1_1024w.webp 1024w, assets/images/responsive/Tanoy 1_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Tanoy 1.webp"  alt="Tanoy Poster" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Branding</span>
-              <h3>Custom Poster</h3>
-              <p>Typography & design</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 9"
-          data-desc="High-impact poster with cinematic visual treatment and premium finish."
-          data-img="BRANDING/Poster 9.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Poster 9_480w.webp 480w, assets/images/responsive/Poster 9_768w.webp 768w, assets/images/responsive/Poster 9_1024w.webp 1024w, assets/images/responsive/Poster 9_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Poster 9.webp"  alt="Poster 9" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Branding</span>
-              <h3>Cinematic Poster</h3>
-              <p>Premium branding</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 13"
-          data-desc="Clean, modern poster design with attention to detail and brand consistency."
-          data-img="BRANDING/Poster 13.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Poster 13_480w.webp 480w, assets/images/responsive/Poster 13_768w.webp 768w, assets/images/responsive/Poster 13_1024w.webp 1024w, assets/images/responsive/Poster 13_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Poster 13.webp"  alt="Poster 13" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Branding</span>
-              <h3>Modern Poster</h3>
-              <p>Clean design</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- MORE VIDEOS -->
-        <article class="portfolio-card card-wide reveal" data-category="video" data-title="Ronaldo Edit"
-          data-desc="Dynamic Ronaldo edit — fast cuts, epic transitions, and cinematic color grading."
-          data-video="VIDEOS/ronaldo edit.mp4">
-          <div class="card-media"><video src="VIDEOS/ronaldo edit.mp4"  muted loop preload="none" poster="assets/posters/ronaldo edit.webp"></video></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Video</span>
-              <h3>Ronaldo Edit</h3>
-              <p>Dynamic sports edit</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="video" data-title="CR7 Original Video"
-          data-desc="Original cinematic edit of Cristiano Ronaldo — storytelling through motion."
-          data-video="VIDEOS/CR7 original video 2.mp4">
-          <div class="card-media"><video src="VIDEOS/CR7 original video 2.mp4"  muted loop preload="none" poster="assets/posters/CR7 original video 2.webp"></video>
-          </div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Video</span>
-              <h3>CR7 Original</h3>
-              <p>Cinematic storytelling</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- MORE BRANDING -->
-        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 17"
-          data-desc="Striking poster with vibrant colors and professional composition."
-          data-img="BRANDING/Poster 17 (1)-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Poster 17 (1)-01_480w.webp 480w, assets/images/responsive/Poster 17 (1)-01_768w.webp 768w, assets/images/responsive/Poster 17 (1)-01_1024w.webp 1024w, assets/images/responsive/Poster 17 (1)-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Poster 17 (1)-01.webp"  alt="Poster 17" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Branding</span>
-              <h3>Vibrant Poster</h3>
-              <p>Striking visuals</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="branding" data-title="Poster 14"
-          data-desc="Refined poster design with balanced layout and premium aesthetics."
-          data-img="BRANDING/Poster 14.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Poster 14_480w.webp 480w, assets/images/responsive/Poster 14_768w.webp 768w, assets/images/responsive/Poster 14_1024w.webp 1024w, assets/images/responsive/Poster 14_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Poster 14.webp"  alt="Poster 14" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Branding</span>
-              <h3>Refined Poster</h3>
-              <p>Premium design</p>
-            </div>
-          </div>
-        </article>
-
-        <!-- PHOTOGRAPHY -->
-        <article class="portfolio-card reveal" data-category="photo" data-title="Landscape Shot"
+<article class="portfolio-card" data-aos="fade-up" data-aos-duration="800" data-category="photo" data-title="Landscape Shot"
           data-desc="Cinematic landscape photography with natural lighting." data-img="Photography/DSC_0501.jpg">
           <div class="card-media"><picture>
   <source type="image/webp" srcset="assets/images/responsive/DSC_0501_480w.webp 480w, assets/images/responsive/DSC_0501_768w.webp 768w, assets/images/responsive/DSC_0501_1024w.webp 1024w, assets/images/responsive/DSC_0501_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
@@ -330,7 +155,7 @@
           </div>
         </article>
 
-        <article class="portfolio-card reveal" data-category="photo" data-title="Portrait"
+<article class="portfolio-card" data-aos="fade-up" data-aos-duration="800" data-category="photo" data-title="Portrait"
           data-desc="Cinematic portrait with depth of field." data-img="Photography/DSC_0536.jpg">
           <div class="card-media"><picture>
   <source type="image/webp" srcset="assets/images/responsive/DSC_0536_480w.webp 480w, assets/images/responsive/DSC_0536_768w.webp 768w, assets/images/responsive/DSC_0536_1024w.webp 1024w, assets/images/responsive/DSC_0536_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
@@ -344,416 +169,23 @@
           </div>
         </article>
 
-        <article class="portfolio-card reveal" data-category="photo" data-title="Street Photography"
-          data-desc="Capturing candid moments in urban settings." data-img="Photography/DSC_0712.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0712_480w.webp 480w, assets/images/responsive/DSC_0712_768w.webp 768w, assets/images/responsive/DSC_0712_1024w.webp 1024w, assets/images/responsive/DSC_0712_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0712.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Street</h3>
-              <p>Urban moments</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Nature"
-          data-desc="Nature photography with vivid colors and composition." data-img="Photography/DSC_0845.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0845_480w.webp 480w, assets/images/responsive/DSC_0845_768w.webp 768w, assets/images/responsive/DSC_0845_1024w.webp 1024w, assets/images/responsive/DSC_0845_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0845.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Nature</h3>
-              <p>Vivid composition</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card card-wide reveal" data-category="photo" data-title="Cinematic Frame"
-          data-desc="Widescreen cinematic capture with dramatic tones." data-img="Photography/DSC_0946.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0946_480w.webp 480w, assets/images/responsive/DSC_0946_768w.webp 768w, assets/images/responsive/DSC_0946_1024w.webp 1024w, assets/images/responsive/DSC_0946_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0946.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Cinematic Frame</h3>
-              <p>Dramatic tones</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Golden Hour"
-          data-desc="Photography during golden hour with warm tones." data-img="Photography/DSC_0960.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0960_480w.webp 480w, assets/images/responsive/DSC_0960_768w.webp 768w, assets/images/responsive/DSC_0960_1024w.webp 1024w, assets/images/responsive/DSC_0960_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0960.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Golden Hour</h3>
-              <p>Warm tones</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Moody Portrait"
-          data-desc="Dark, moody portrait photography with dramatic lighting." data-img="Photography/DSC_0963.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0963_480w.webp 480w, assets/images/responsive/DSC_0963_768w.webp 768w, assets/images/responsive/DSC_0963_1024w.webp 1024w, assets/images/responsive/DSC_0963_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0963.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Moody Portrait</h3>
-              <p>Dramatic lighting</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Creative Edit"
-          data-desc="Artistic photography with creative color grading." data-img="Photography/DSC_0916-02 (1).jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0916-02 (1)_480w.webp 480w, assets/images/responsive/DSC_0916-02 (1)_768w.webp 768w, assets/images/responsive/DSC_0916-02 (1)_1024w.webp 1024w, assets/images/responsive/DSC_0916-02 (1)_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0916-02 (1).webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Creative Edit</h3>
-              <p>Color grading</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Composition Study"
-          data-desc="Exploring visual balance and composition." data-img="Photography/DSC_0065-02-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0065-02-01_480w.webp 480w, assets/images/responsive/DSC_0065-02-01_768w.webp 768w, assets/images/responsive/DSC_0065-02-01_1024w.webp 1024w, assets/images/responsive/DSC_0065-02-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0065-02-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Composition</h3>
-              <p>Visual balance</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Portrait Series"
-          data-desc="Portrait series with consistent aesthetic and grading." data-img="Photography/DSC_0174-01-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0174-01-01_480w.webp 480w, assets/images/responsive/DSC_0174-01-01_768w.webp 768w, assets/images/responsive/DSC_0174-01-01_1024w.webp 1024w, assets/images/responsive/DSC_0174-01-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0174-01-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Portrait Series</h3>
-              <p>Consistent aesthetic</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card card-wide reveal" data-category="photo" data-title="Panoramic View"
-          data-desc="Wide-angle panoramic photography." data-img="Photography/DSC_0175-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0175-01_480w.webp 480w, assets/images/responsive/DSC_0175-01_768w.webp 768w, assets/images/responsive/DSC_0175-01_1024w.webp 1024w, assets/images/responsive/DSC_0175-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0175-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Panoramic View</h3>
-              <p>Wide-angle shot</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Light Study"
-          data-desc="Play of natural and artificial light." data-img="Photography/DSC_0205-01-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0205-01-01_480w.webp 480w, assets/images/responsive/DSC_0205-01-01_768w.webp 768w, assets/images/responsive/DSC_0205-01-01_1024w.webp 1024w, assets/images/responsive/DSC_0205-01-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0205-01-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Light Study</h3>
-              <p>Light and shadow</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Outdoor Scene"
-          data-desc="Scenic outdoor photography with rich colors." data-img="Photography/DSC_0315-02.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0315-02_480w.webp 480w, assets/images/responsive/DSC_0315-02_768w.webp 768w, assets/images/responsive/DSC_0315-02_1024w.webp 1024w, assets/images/responsive/DSC_0315-02_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0315-02.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Outdoor Scene</h3>
-              <p>Rich colors</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Close-Up"
-          data-desc="Detailed close-up with shallow depth of field." data-img="Photography/DSC_0943-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_0943-01_480w.webp 480w, assets/images/responsive/DSC_0943-01_768w.webp 768w, assets/images/responsive/DSC_0943-01_1024w.webp 1024w, assets/images/responsive/DSC_0943-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_0943-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Close-Up</h3>
-              <p>Shallow DOF</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Evening Glow"
-          data-desc="Twilight photography with ambient warm glow." data-img="Photography/DSC_1015-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_1015-01_480w.webp 480w, assets/images/responsive/DSC_1015-01_768w.webp 768w, assets/images/responsive/DSC_1015-01_1024w.webp 1024w, assets/images/responsive/DSC_1015-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_1015-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Evening Glow</h3>
-              <p>Ambient warmth</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Detail Shot"
-          data-desc="Macro-level detail and texture photography." data-img="Photography/DSC_1035-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_1035-01_480w.webp 480w, assets/images/responsive/DSC_1035-01_768w.webp 768w, assets/images/responsive/DSC_1035-01_1024w.webp 1024w, assets/images/responsive/DSC_1035-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_1035-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Detail Shot</h3>
-              <p>Texture & detail</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card card-wide reveal" data-category="photo" data-title="Dramatic Sky"
-          data-desc="Landscape under dramatic sky tones." data-img="Photography/DSC_1081-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_1081-01_480w.webp 480w, assets/images/responsive/DSC_1081-01_768w.webp 768w, assets/images/responsive/DSC_1081-01_1024w.webp 1024w, assets/images/responsive/DSC_1081-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_1081-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Dramatic Sky</h3>
-              <p>Sky tones</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Candid Moment"
-          data-desc="Authentic candid photography." data-img="Photography/DSC_1087-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_1087-01_480w.webp 480w, assets/images/responsive/DSC_1087-01_768w.webp 768w, assets/images/responsive/DSC_1087-01_1024w.webp 1024w, assets/images/responsive/DSC_1087-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_1087-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Candid</h3>
-              <p>Authentic moments</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Silhouette"
-          data-desc="Bold silhouette photography with contrasting light." data-img="Photography/DSC_1097-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_1097-01_480w.webp 480w, assets/images/responsive/DSC_1097-01_768w.webp 768w, assets/images/responsive/DSC_1097-01_1024w.webp 1024w, assets/images/responsive/DSC_1097-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_1097-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Silhouette</h3>
-              <p>Contrasting light</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Bokeh"
-          data-desc="Beautiful bokeh and light effects." data-img="Photography/DSC_1144-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_1144-01_480w.webp 480w, assets/images/responsive/DSC_1144-01_768w.webp 768w, assets/images/responsive/DSC_1144-01_1024w.webp 1024w, assets/images/responsive/DSC_1144-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_1144-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Bokeh</h3>
-              <p>Light effects</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Blue Hour"
-          data-desc="Photography during blue hour with cool tones." data-img="Photography/DSC_1151-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/DSC_1151-01_480w.webp 480w, assets/images/responsive/DSC_1151-01_768w.webp 768w, assets/images/responsive/DSC_1151-01_1024w.webp 1024w, assets/images/responsive/DSC_1151-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/DSC_1151-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Blue Hour</h3>
-              <p>Cool tones</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Event Photography"
-          data-desc="Professional event capture." data-img="Photography/IMG_5409.JPG">
-          <div class="card-media"><img src="Photography/IMG_5409.JPG" alt="Photography" loading="lazy" /></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Event</h3>
-              <p>Professional capture</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Creative Portrait"
-          data-desc="Artistic portrait with unique framing." data-img="Photography/IMG_5349.JPG">
-          <div class="card-media"><img src="Photography/IMG_5349.JPG" alt="Photography" loading="lazy" /></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Creative Portrait</h3>
-              <p>Unique framing</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Edited Art"
-          data-desc="Artistic photo manipulation and retouching."
-          data-img="Photography/Picsart_23-01-30_20-16-07-796.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Picsart_23-01-30_20-16-07-796_480w.webp 480w, assets/images/responsive/Picsart_23-01-30_20-16-07-796_768w.webp 768w, assets/images/responsive/Picsart_23-01-30_20-16-07-796_1024w.webp 1024w, assets/images/responsive/Picsart_23-01-30_20-16-07-796_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Picsart_23-01-30_20-16-07-796.webp"  alt="Photography"
-              loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Edited Art</h3>
-              <p>Photo manipulation</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Color Grade"
-          data-desc="Photo with cinematic color grading."
-          data-img="Photography/Picsart_23-02-04_21-32-38-479-01-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Picsart_23-02-04_21-32-38-479-01-01_480w.webp 480w, assets/images/responsive/Picsart_23-02-04_21-32-38-479-01-01_768w.webp 768w, assets/images/responsive/Picsart_23-02-04_21-32-38-479-01-01_1024w.webp 1024w, assets/images/responsive/Picsart_23-02-04_21-32-38-479-01-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Picsart_23-02-04_21-32-38-479-01-01.webp"  alt="Photography"
-              loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Color Grade</h3>
-              <p>Cinematic tones</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Artistic Edit"
-          data-desc="Creative art direction and visual editing."
-          data-img="Photography/Picsart_23-05-17_04-40-20-016.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/Picsart_23-05-17_04-40-20-016_480w.webp 480w, assets/images/responsive/Picsart_23-05-17_04-40-20-016_768w.webp 768w, assets/images/responsive/Picsart_23-05-17_04-40-20-016_1024w.webp 1024w, assets/images/responsive/Picsart_23-05-17_04-40-20-016_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/Picsart_23-05-17_04-40-20-016.webp"  alt="Photography"
-              loading="lazy" decoding="async" />
-</picture></div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Artistic Edit</h3>
-              <p>Art direction</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card card-wide reveal" data-category="photo" data-title="Winter Scene"
-          data-desc="Festive winter photography with natural lighting." data-img="Photography/IMG_20201225_174611.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/IMG_20201225_174611_480w.webp 480w, assets/images/responsive/IMG_20201225_174611_768w.webp 768w, assets/images/responsive/IMG_20201225_174611_1024w.webp 1024w, assets/images/responsive/IMG_20201225_174611_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/IMG_20201225_174611.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture>
-          </div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Winter Scene</h3>
-              <p>Festive capture</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Documentary"
-          data-desc="Documentary-style photography." data-img="Photography/IMG_20201226_171008.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/IMG_20201226_171008_480w.webp 480w, assets/images/responsive/IMG_20201226_171008_768w.webp 768w, assets/images/responsive/IMG_20201226_171008_1024w.webp 1024w, assets/images/responsive/IMG_20201226_171008_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/IMG_20201226_171008.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture>
-          </div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Documentary</h3>
-              <p>Raw storytelling</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Heritage"
-          data-desc="Heritage and cultural photography." data-img="Photography/IMG_20221222_113053-01.jpeg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/IMG_20221222_113053-01_480w.webp 480w, assets/images/responsive/IMG_20221222_113053-01_768w.webp 768w, assets/images/responsive/IMG_20221222_113053-01_1024w.webp 1024w, assets/images/responsive/IMG_20221222_113053-01_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/IMG_20221222_113053-01.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture>
-          </div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Heritage</h3>
-              <p>Cultural capture</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-category="photo" data-title="Travel"
-          data-desc="Travel photography with vivid storytelling." data-img="Photography/IMG_20201227_163822.jpg">
-          <div class="card-media"><picture>
-  <source type="image/webp" srcset="assets/images/responsive/IMG_20201227_163822_480w.webp 480w, assets/images/responsive/IMG_20201227_163822_768w.webp 768w, assets/images/responsive/IMG_20201227_163822_1024w.webp 1024w, assets/images/responsive/IMG_20201227_163822_1440w.webp 1440w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px">
-  <img src="assets/images/optimized/IMG_20201227_163822.webp"  alt="Photography" loading="lazy" decoding="async" />
-</picture>
-          </div>
-          <div class="card-overlay">
-            <div class="card-info"><span class="card-category">Photography</span>
-              <h3>Travel</h3>
-              <p>Vivid storytelling</p>
-            </div>
-          </div>
-        </article>
-
       </div>
+      <div style="text-align: center; margin-top: 64px;">
+        <a href="work.html" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200"><span>View All Projects →</span></a>
+      </div></div>
     </div>
   </section>
 
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="container about-layout">
-      <div class="about-portrait reveal">
+      <div class="about-portrait" data-aos="fade-right" data-aos-duration="1000">
         <div class="portrait-frame">
           <img src="PROFILE.JPEG" alt="Antik Das Gupta" class="portrait-img" />
           <div class="portrait-border"></div>
         </div>
       </div>
-      <div class="about-content reveal">
+      <div class="about-content" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <p class="section-tag">About Me</p>
         <h2>I'm <span class="gradient-text">Antik</span></h2>
         <p class="about-bio">A visual designer and video editor with a deep passion for cinematic storytelling. I
@@ -774,12 +206,12 @@
   <!-- SKILLS -->
   <section class="skills" id="skills">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header" data-aos="fade-up" data-aos-duration="800">
         <p class="section-tag">Expertise</p>
         <h2>Skills & <span class="gradient-text">Tools</span></h2>
       </div>
       <div class="skills-grid">
-        <div class="skill-card reveal">
+        <div class="skill-card" data-aos="fade-up" data-aos-duration="800">
           <h3>Video & Motion</h3>
           <ul>
             <li>Cinematic Color Grading</li>
@@ -788,7 +220,7 @@
             <li>Sound Design Integration</li>
           </ul>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card" data-aos="fade-up" data-aos-duration="800">
           <h3>Design & Branding</h3>
           <ul>
             <li>Brand Identity Design</li>
@@ -798,7 +230,7 @@
           </ul>
         </div>
       </div>
-      <div class="tools-row reveal">
+      <div class="tools-row" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
         <div class="tool-chip"><span class="tool-abbr">Ps</span>Photoshop</div>
         <div class="tool-chip"><span class="tool-abbr">Lr</span>Lightroom</div>
         <div class="tool-chip"><span class="tool-abbr">Pr</span>Premiere Pro</div>
@@ -812,13 +244,13 @@
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="container contact-layout">
-      <div class="contact-info reveal">
+      <div class="contact-info" data-aos="fade-right" data-aos-duration="1000">
         <p class="section-tag">Get in Touch</p>
         <h2>Let's Create Something <span class="gradient-text">Amazing</span></h2>
         <p class="contact-subtitle">Have a project in mind? Drop me a message and I'll get back to you within 24 hours.
         </p>
       </div>
-      <div class="contact-form-wrapper reveal">
+      <div class="contact-form-wrapper" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <form class="contact-form" id="contactForm">
           <div class="form-group"><input type="text" id="name" placeholder="Your Name" required /></div>
           <div class="form-group"><input type="email" id="email" placeholder="Your Email" required /></div>
@@ -854,6 +286,7 @@
     <img class="lightbox-img" id="lightboxImg" src="" alt="Photo" />
   </div>
 
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="script.js" defer></script>
 </body>
 

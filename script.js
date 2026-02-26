@@ -4,6 +4,17 @@
 (function () {
   'use strict';
 
+  // ─── AOS (Animate On Scroll) INIT ───
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 60,
+      disable: 'mobile'
+    });
+  }
+
   // ─── CURSOR GLOW ───
   const glow = null; // Disabled in premium theme
   if (glow && window.matchMedia('(pointer: fine)').matches) {
