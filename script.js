@@ -219,22 +219,15 @@
     glCanvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';
     heroSection.insertBefore(glCanvas, heroSection.firstChild);
 
-    // Slider controls
-    let currentHue = 30;
-    let currentIntensity = 0.5;
+    // Hue slider control only
+    let currentHue = 220;
     const hueSlider = document.getElementById('lightningHue');
     const hueLabel = document.getElementById('hueValue');
-    const intensitySlider = document.getElementById('lightningIntensity');
 
     if (hueSlider) {
       hueSlider.addEventListener('input', e => {
         currentHue = Number(e.target.value);
         if (hueLabel) hueLabel.textContent = currentHue + '°';
-      });
-    }
-    if (intensitySlider) {
-      intensitySlider.addEventListener('input', e => {
-        currentIntensity = Number(e.target.value) / 100;
       });
     }
 
@@ -257,7 +250,6 @@
         uniform vec2 iResolution;
         uniform float iTime;
         uniform float uHue;
-        uniform float uIntensity;
 
         #define OCTAVE_COUNT 10
 
@@ -313,30 +305,11 @@
           uv = 2.0 * uv - 1.0;
           uv.x *= iResolution.x / iResolution.y;
 
-          // Main bolt — user-controlled hue
-          vec2 uv1 = uv;
-          uv1 += 2.0 * fbm(uv1 * 1.8 + 0.8 * iTime * 1.2) - 1.0;
-          float dist1 = abs(uv1.x);
-          vec3 mainColor = hsv2rgb(vec3(uHue / 360.0, 0.7, 0.85));
-          vec3 col1 = mainColor * pow(mix(0.0, 0.07, hash11(iTime * 1.2)) / dist1, 1.0) * uIntensity;
-
-          // Secondary bolt — complementary hue, offset left
-          vec2 uv2 = uv;
-          uv2.x += 1.5;
-          uv2 += 2.0 * fbm(uv2 * 2.0 + 0.8 * iTime * 0.9) - 1.0;
-          float dist2 = abs(uv2.x);
-          vec3 secColor = hsv2rgb(vec3(mod(uHue + 120.0, 360.0) / 360.0, 0.6, 0.7));
-          vec3 col2 = secColor * pow(mix(0.0, 0.06, hash11(iTime * 0.9 + 1.0)) / dist2, 1.0) * uIntensity * 0.6;
-
-          // Tertiary bolt — analogous hue, offset right
-          vec2 uv3 = uv;
-          uv3.x -= 1.5;
-          uv3 += 2.0 * fbm(uv3 * 1.6 + 0.8 * iTime * 1.0) - 1.0;
-          float dist3 = abs(uv3.x);
-          vec3 terColor = hsv2rgb(vec3(mod(uHue + 30.0, 360.0) / 360.0, 0.5, 0.75));
-          vec3 col3 = terColor * pow(mix(0.0, 0.05, hash11(iTime * 1.0 + 2.0)) / dist3, 1.0) * uIntensity * 0.5;
-
-          vec3 col = col1 + col2 + col3;
+          // Single central lightning bolt
+          uv += 2.0 * fbm(uv * 2.0 + 0.8 * iTime * 1.6) - 1.0;
+          float dist = abs(uv.x);
+          vec3 baseColor = hsv2rgb(vec3(uHue / 360.0, 0.7, 0.8));
+          vec3 col = baseColor * pow(mix(0.0, 0.07, hash11(iTime * 1.6)) / dist, 1.0) * 0.6;
           gl_FragColor = vec4(col, 1.0);
         }
       `;
@@ -377,7 +350,6 @@
           const uRes = gl.getUniformLocation(program, 'iResolution');
           const uTime = gl.getUniformLocation(program, 'iTime');
           const uHue = gl.getUniformLocation(program, 'uHue');
-          const uIntensity = gl.getUniformLocation(program, 'uIntensity');
 
           const startTime = performance.now();
 
@@ -387,7 +359,6 @@
             gl.uniform2f(uRes, glCanvas.width, glCanvas.height);
             gl.uniform1f(uTime, (performance.now() - startTime) / 1000.0);
             gl.uniform1f(uHue, currentHue);
-            gl.uniform1f(uIntensity, currentIntensity);
             gl.drawArrays(gl.TRIANGLES, 0, 6);
             requestAnimationFrame(renderLoop);
           })();
