@@ -229,11 +229,11 @@
 
   // Color palette matching Premium Dark theme
   const colors = [
-    'rgba(176, 137, 104, 0.08)',  // Bronze
-    'rgba(27, 67, 50, 0.12)',      // Forest green
-    'rgba(176, 137, 104, 0.05)',  // Light bronze
-    'rgba(234, 234, 234, 0.03)',  // Faint white
-    'rgba(27, 67, 50, 0.06)',      // Light green
+    'rgba(176, 137, 104, 0.25)',  // Bronze
+    'rgba(27, 67, 50, 0.30)',      // Forest green
+    'rgba(176, 137, 104, 0.18)',  // Light bronze
+    'rgba(234, 234, 234, 0.10)',  // Faint white
+    'rgba(27, 67, 50, 0.20)',      // Light green
   ];
 
   // Shape types
@@ -331,7 +331,7 @@
 
   // Create shapes
   const shapes = [];
-  const shapeCount = Math.min(35, Math.floor(w * h / 40000));
+  const shapeCount = Math.min(50, Math.floor(w * h / 25000));
   for (let i = 0; i < shapeCount; i++) shapes.push(new Shape());
 
   // Connection lines between nearby shapes
@@ -342,7 +342,7 @@
         const dy = shapes[i].y - shapes[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 200) {
-          const opacity = 0.03 * (1 - dist / 200);
+          const opacity = 0.12 * (1 - dist / 200);
           ctx.beginPath();
           ctx.moveTo(shapes[i].x, shapes[i].y);
           ctx.lineTo(shapes[j].x, shapes[j].y);
@@ -387,9 +387,9 @@
   }
 
   const orbs = [
-    new GradientOrb('rgba(27, 67, 50, 0.06)', 'rgba(27, 67, 50, 0)', 300),
-    new GradientOrb('rgba(176, 137, 104, 0.04)', 'rgba(176, 137, 104, 0)', 250),
-    new GradientOrb('rgba(27, 67, 50, 0.03)', 'rgba(27, 67, 50, 0)', 350),
+    new GradientOrb('rgba(27, 67, 50, 0.18)', 'rgba(27, 67, 50, 0)', 350),
+    new GradientOrb('rgba(176, 137, 104, 0.14)', 'rgba(176, 137, 104, 0)', 300),
+    new GradientOrb('rgba(27, 67, 50, 0.10)', 'rgba(27, 67, 50, 0)', 400),
   ];
 
   let time = 0;
