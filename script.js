@@ -212,275 +212,171 @@
     });
   });
 
-  // ─── CREATIVE PORTFOLIO BACKGROUND ───
-  // Shapes themed around visual design, video editing & photography
-  const canvas = document.createElement('canvas');
-  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;';
-  document.body.prepend(canvas);
-  const ctx = canvas.getContext('2d');
-  let w, h;
-  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
+  // ─── WEBGL LIGHTNING SHADER BACKGROUND ───
+  // Extracted from hero-odyssey React component, adapted for vanilla JS
+  // Uses GPU-accelerated fractal Brownian motion for real-time procedural lightning
+  const glCanvas = document.createElement('canvas');
+  glCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;';
+  document.body.prepend(glCanvas);
 
-  let mouseX = w / 2, mouseY = h / 2;
-  document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-
-  // Niche-appropriate shapes for a visual/video portfolio
-  const SHAPES = ['filmFrame', 'aperture', 'playBtn', 'bezier', 'colorSwatch', 'filmStrip', 'penTool', 'viewfinder'];
-
-  class CreativeShape {
-    constructor() { this.init(); }
-    init() {
-      this.x = Math.random() * w;
-      this.y = Math.random() * h;
-      this.size = Math.random() * 28 + 12;
-      this.type = SHAPES[Math.floor(Math.random() * SHAPES.length)];
-      this.opacity = Math.random() * 0.15 + 0.08;
-      this.rotation = Math.random() * Math.PI * 2;
-      this.rotSpeed = (Math.random() - 0.5) * 0.004;
-      this.vx = (Math.random() - 0.5) * 0.12;
-      this.vy = (Math.random() - 0.5) * 0.12;
-      this.phase = Math.random() * Math.PI * 2;
-      this.phaseSpeed = Math.random() * 0.002 + 0.001;
-      // Color: bronze or green tint
-      this.isBronze = Math.random() > 0.5;
-    }
-    getColor(alpha) {
-      return this.isBronze
-        ? `rgba(176, 137, 104, ${alpha || this.opacity})`
-        : `rgba(27, 67, 50, ${(alpha || this.opacity) * 1.5})`;
-    }
-    update() {
-      this.phase += this.phaseSpeed;
-      this.rotation += this.rotSpeed;
-      this.x += this.vx + Math.sin(this.phase) * 0.12;
-      this.y += this.vy + Math.cos(this.phase * 0.7) * 0.08;
-
-      // Mouse parallax
-      const dx = mouseX - this.x, dy = mouseY - this.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 250) {
-        const force = (250 - dist) / 250 * 0.25;
-        this.x -= dx * force * 0.003;
-        this.y -= dy * force * 0.003;
-      }
-
-      if (this.x < -60) this.x = w + 60;
-      if (this.x > w + 60) this.x = -60;
-      if (this.y < -60) this.y = h + 60;
-      if (this.y > h + 60) this.y = -60;
-    }
-    draw(ctx) {
-      ctx.save();
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.rotation);
-      const s = this.size;
-      const col = this.getColor();
-      ctx.strokeStyle = col;
-      ctx.fillStyle = col;
-      ctx.lineWidth = 1.2;
-
-      switch (this.type) {
-        case 'filmFrame': {
-          // Movie film frame — rectangle with sprocket holes
-          ctx.strokeRect(-s, -s * 0.7, s * 2, s * 1.4);
-          // Sprocket holes
-          for (let i = -1; i <= 1; i++) {
-            ctx.fillRect(-s - 4, i * s * 0.4 - 2, 3, 4);
-            ctx.fillRect(s + 1, i * s * 0.4 - 2, 3, 4);
-          }
-          break;
-        }
-        case 'aperture': {
-          // Camera aperture — overlapping arcs
-          ctx.beginPath();
-          ctx.arc(0, 0, s, 0, Math.PI * 2);
-          ctx.stroke();
-          // Inner blades
-          for (let i = 0; i < 6; i++) {
-            const angle = (i / 6) * Math.PI * 2;
-            ctx.beginPath();
-            ctx.arc(
-              Math.cos(angle) * s * 0.3,
-              Math.sin(angle) * s * 0.3,
-              s * 0.55, angle + 0.5, angle + 1.5
-            );
-            ctx.stroke();
-          }
-          break;
-        }
-        case 'playBtn': {
-          // Video play button — triangle inside circle
-          ctx.beginPath();
-          ctx.arc(0, 0, s, 0, Math.PI * 2);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(-s * 0.35, -s * 0.5);
-          ctx.lineTo(-s * 0.35, s * 0.5);
-          ctx.lineTo(s * 0.55, 0);
-          ctx.closePath();
-          ctx.fill();
-          break;
-        }
-        case 'bezier': {
-          // Design bezier curve with control points
-          ctx.beginPath();
-          ctx.moveTo(-s, s * 0.5);
-          ctx.bezierCurveTo(-s * 0.3, -s * 1.2, s * 0.3, s * 1.2, s, -s * 0.5);
-          ctx.stroke();
-          // Control point dots
-          ctx.fillStyle = this.getColor(this.opacity * 1.5);
-          ctx.beginPath(); ctx.arc(-s, s * 0.5, 2.5, 0, Math.PI * 2); ctx.fill();
-          ctx.beginPath(); ctx.arc(s, -s * 0.5, 2.5, 0, Math.PI * 2); ctx.fill();
-          // Control handles (dashed lines)
-          ctx.setLineDash([2, 3]);
-          ctx.beginPath(); ctx.moveTo(-s, s * 0.5); ctx.lineTo(-s * 0.3, -s * 1.2); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(s, -s * 0.5); ctx.lineTo(s * 0.3, s * 1.2); ctx.stroke();
-          ctx.setLineDash([]);
-          break;
-        }
-        case 'colorSwatch': {
-          // Color palette swatch — overlapping circles
-          const swatchColors = [
-            this.getColor(this.opacity * 0.8),
-            `rgba(176, 137, 104, ${this.opacity * 0.6})`,
-            `rgba(27, 67, 50, ${this.opacity * 0.9})`
-          ];
-          for (let i = 0; i < 3; i++) {
-            ctx.beginPath();
-            ctx.arc(i * s * 0.6 - s * 0.6, 0, s * 0.5, 0, Math.PI * 2);
-            ctx.fillStyle = swatchColors[i];
-            ctx.fill();
-          }
-          break;
-        }
-        case 'filmStrip': {
-          // Vertical film strip with perforations
-          ctx.strokeRect(-s * 0.4, -s, s * 0.8, s * 2);
-          for (let i = -2; i <= 2; i++) {
-            ctx.fillRect(-s * 0.55, i * s * 0.4 - 1.5, 4, 3);
-            ctx.fillRect(s * 0.35, i * s * 0.4 - 1.5, 4, 3);
-          }
-          // Inner frame lines
-          ctx.strokeRect(-s * 0.3, -s * 0.7, s * 0.6, s * 0.55);
-          ctx.strokeRect(-s * 0.3, s * 0.15, s * 0.6, s * 0.55);
-          break;
-        }
-        case 'penTool': {
-          // Pen tool cursor icon
-          ctx.beginPath();
-          ctx.moveTo(0, -s);
-          ctx.lineTo(s * 0.3, s * 0.4);
-          ctx.lineTo(0, s * 0.2);
-          ctx.lineTo(-s * 0.3, s * 0.4);
-          ctx.closePath();
-          ctx.stroke();
-          // Nib point
-          ctx.beginPath();
-          ctx.moveTo(-s * 0.15, s * 0.4);
-          ctx.lineTo(0, s);
-          ctx.lineTo(s * 0.15, s * 0.4);
-          ctx.fill();
-          break;
-        }
-        case 'viewfinder': {
-          // Camera viewfinder — corners of a frame
-          const v = s;
-          const corner = s * 0.35;
-          // Top-left
-          ctx.beginPath(); ctx.moveTo(-v, -v + corner); ctx.lineTo(-v, -v); ctx.lineTo(-v + corner, -v); ctx.stroke();
-          // Top-right
-          ctx.beginPath(); ctx.moveTo(v - corner, -v); ctx.lineTo(v, -v); ctx.lineTo(v, -v + corner); ctx.stroke();
-          // Bottom-left
-          ctx.beginPath(); ctx.moveTo(-v, v - corner); ctx.lineTo(-v, v); ctx.lineTo(-v + corner, v); ctx.stroke();
-          // Bottom-right
-          ctx.beginPath(); ctx.moveTo(v - corner, v); ctx.lineTo(v, v); ctx.lineTo(v, v - corner); ctx.stroke();
-          // Center crosshair
-          ctx.beginPath(); ctx.moveTo(-3, 0); ctx.lineTo(3, 0); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(0, -3); ctx.lineTo(0, 3); ctx.stroke();
-          break;
-        }
-      }
-      ctx.restore();
-    }
+  function resizeGL() {
+    glCanvas.width = glCanvas.clientWidth;
+    glCanvas.height = glCanvas.clientHeight;
   }
+  resizeGL();
+  window.addEventListener('resize', resizeGL);
 
-  // Create shapes
-  const shapes = [];
-  const shapeCount = Math.min(40, Math.floor(w * h / 30000));
-  for (let i = 0; i < shapeCount; i++) shapes.push(new CreativeShape());
+  const gl = glCanvas.getContext('webgl');
+  if (gl) {
+    // ── Shader source ──
+    const vertSrc = `
+      attribute vec2 aPosition;
+      void main() { gl_Position = vec4(aPosition, 0.0, 1.0); }
+    `;
 
-  // Connection lines — styled as timeline tracks
-  function drawConnections() {
-    for (let i = 0; i < shapes.length; i++) {
-      for (let j = i + 1; j < shapes.length; j++) {
-        const dx = shapes[i].x - shapes[j].x;
-        const dy = shapes[i].y - shapes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 180) {
-          const opacity = 0.08 * (1 - dist / 180);
-          ctx.beginPath();
-          ctx.moveTo(shapes[i].x, shapes[i].y);
-          ctx.lineTo(shapes[j].x, shapes[j].y);
-          ctx.strokeStyle = `rgba(176, 137, 104, ${opacity})`;
-          ctx.lineWidth = 0.6;
-          ctx.setLineDash([4, 4]);
-          ctx.stroke();
-          ctx.setLineDash([]);
+    const fragSrc = `
+      precision mediump float;
+      uniform vec2 iResolution;
+      uniform float iTime;
+
+      #define OCTAVE_COUNT 10
+
+      // HSV to RGB conversion
+      vec3 hsv2rgb(vec3 c) {
+        vec3 rgb = clamp(abs(mod(c.x * 6.0 + vec3(0.0,4.0,2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
+        return c.z * mix(vec3(1.0), rgb, c.y);
+      }
+
+      float hash11(float p) {
+        p = fract(p * .1031);
+        p *= p + 33.33;
+        p *= p + p;
+        return fract(p);
+      }
+
+      float hash12(vec2 p) {
+        vec3 p3 = fract(vec3(p.xyx) * .1031);
+        p3 += dot(p3, p3.yzx + 33.33);
+        return fract((p3.x + p3.y) * p3.z);
+      }
+
+      mat2 rotate2d(float theta) {
+        float c = cos(theta);
+        float s = sin(theta);
+        return mat2(c, -s, s, c);
+      }
+
+      float noise(vec2 p) {
+        vec2 ip = floor(p);
+        vec2 fp = fract(p);
+        float a = hash12(ip);
+        float b = hash12(ip + vec2(1.0, 0.0));
+        float c = hash12(ip + vec2(0.0, 1.0));
+        float d = hash12(ip + vec2(1.0, 1.0));
+        vec2 t = smoothstep(0.0, 1.0, fp);
+        return mix(mix(a, b, t.x), mix(c, d, t.x), t.y);
+      }
+
+      float fbm(vec2 p) {
+        float value = 0.0;
+        float amplitude = 0.5;
+        for (int i = 0; i < OCTAVE_COUNT; ++i) {
+          value += amplitude * noise(p);
+          p *= rotate2d(0.45);
+          p *= 2.0;
+          amplitude *= 0.5;
         }
+        return value;
+      }
+
+      void main() {
+        vec2 uv = gl_FragCoord.xy / iResolution.xy;
+        uv = 2.0 * uv - 1.0;
+        uv.x *= iResolution.x / iResolution.y;
+
+        // === BRONZE/GREEN DUAL LIGHTNING ===
+
+        // Lightning bolt 1: Center — warm bronze (hue ~30)
+        vec2 uv1 = uv;
+        uv1 += 2.0 * fbm(uv1 * 1.8 + 0.8 * iTime * 1.2) - 1.0;
+        float dist1 = abs(uv1.x);
+        vec3 bronzeColor = hsv2rgb(vec3(30.0 / 360.0, 0.65, 0.85));
+        vec3 col1 = bronzeColor * pow(mix(0.0, 0.07, hash11(iTime * 1.2)) / dist1, 1.0) * 0.5;
+
+        // Lightning bolt 2: Offset left — forest green (hue ~150)
+        vec2 uv2 = uv;
+        uv2.x += 1.5;
+        uv2 += 2.0 * fbm(uv2 * 2.0 + 0.8 * iTime * 0.9) - 1.0;
+        float dist2 = abs(uv2.x);
+        vec3 greenColor = hsv2rgb(vec3(150.0 / 360.0, 0.6, 0.7));
+        vec3 col2 = greenColor * pow(mix(0.0, 0.06, hash11(iTime * 0.9 + 1.0)) / dist2, 1.0) * 0.35;
+
+        // Lightning bolt 3: Offset right — warm gold (hue ~45)
+        vec2 uv3 = uv;
+        uv3.x -= 1.5;
+        uv3 += 2.0 * fbm(uv3 * 1.6 + 0.8 * iTime * 1.0) - 1.0;
+        float dist3 = abs(uv3.x);
+        vec3 goldColor = hsv2rgb(vec3(45.0 / 360.0, 0.5, 0.75));
+        vec3 col3 = goldColor * pow(mix(0.0, 0.05, hash11(iTime * 1.0 + 2.0)) / dist3, 1.0) * 0.3;
+
+        // Combine all bolts
+        vec3 col = col1 + col2 + col3;
+        col = pow(col, vec3(1.0));
+
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    // ── Compile shaders ──
+    function compileShader(src, type) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, src);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error('Shader error:', gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    const vs = compileShader(vertSrc, gl.VERTEX_SHADER);
+    const fs = compileShader(fragSrc, gl.FRAGMENT_SHADER);
+
+    if (vs && fs) {
+      const program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.linkProgram(program);
+
+      if (gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        gl.useProgram(program);
+
+        // Full-screen quad
+        const verts = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
+
+        const aPos = gl.getAttribLocation(program, 'aPosition');
+        gl.enableVertexAttribArray(aPos);
+        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+        const uRes = gl.getUniformLocation(program, 'iResolution');
+        const uTime = gl.getUniformLocation(program, 'iTime');
+
+        const startTime = performance.now();
+
+        (function renderLoop() {
+          resizeGL();
+          gl.viewport(0, 0, glCanvas.width, glCanvas.height);
+          gl.uniform2f(uRes, glCanvas.width, glCanvas.height);
+          gl.uniform1f(uTime, (performance.now() - startTime) / 1000.0);
+          gl.drawArrays(gl.TRIANGLES, 0, 6);
+          requestAnimationFrame(renderLoop);
+        })();
       }
     }
   }
-
-  // Ambient gradient orbs
-  class GradientOrb {
-    constructor(color1, color2, size) {
-      this.x = Math.random() * w;
-      this.y = Math.random() * h;
-      this.size = size;
-      this.color1 = color1;
-      this.color2 = color2;
-      this.vx = (Math.random() - 0.5) * 0.15;
-      this.vy = (Math.random() - 0.5) * 0.15;
-      this.phase = Math.random() * Math.PI * 2;
-    }
-    update() {
-      this.phase += 0.002;
-      this.x += this.vx + Math.sin(this.phase) * 0.25;
-      this.y += this.vy + Math.cos(this.phase * 0.7) * 0.15;
-      if (this.x < -this.size) this.x = w + this.size;
-      if (this.x > w + this.size) this.x = -this.size;
-      if (this.y < -this.size) this.y = h + this.size;
-      if (this.y > h + this.size) this.y = -this.size;
-    }
-    draw(ctx) {
-      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-      grad.addColorStop(0, this.color1);
-      grad.addColorStop(1, this.color2);
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  const orbs = [
-    new GradientOrb('rgba(27, 67, 50, 0.12)', 'rgba(27, 67, 50, 0)', 350),
-    new GradientOrb('rgba(176, 137, 104, 0.08)', 'rgba(176, 137, 104, 0)', 280),
-    new GradientOrb('rgba(27, 67, 50, 0.06)', 'rgba(27, 67, 50, 0)', 400),
-  ];
-
-  let time = 0;
-  (function animate() {
-    time++;
-    ctx.clearRect(0, 0, w, h);
-
-    orbs.forEach(orb => { orb.update(); orb.draw(ctx); });
-    drawConnections();
-    shapes.forEach(s => { s.update(); s.draw(ctx); });
-
-    requestAnimationFrame(animate);
-  })();
 
 })();
