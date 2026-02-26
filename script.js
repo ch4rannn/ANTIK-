@@ -306,10 +306,10 @@
           uv.x *= iResolution.x / iResolution.y;
 
           // Single central lightning bolt (smaller, focused)
-          uv += 2.0 * fbm(uv * 3.0 + 0.8 * iTime * 1.6) - 1.0;
+          uv += 2.0 * fbm(uv * 3.5 + 0.8 * iTime * 1.6) - 1.0;
           float dist = abs(uv.x);
           vec3 baseColor = hsv2rgb(vec3(uHue / 360.0, 0.7, 0.8));
-          vec3 col = baseColor * pow(mix(0.0, 0.07, hash11(iTime * 1.6)) / dist, 1.0) * 0.2;
+          vec3 col = baseColor * pow(mix(0.0, 0.07, hash11(iTime * 1.6)) / dist, 1.0) * 0.1;
           gl_FragColor = vec4(col, 1.0);
         }
       `;
