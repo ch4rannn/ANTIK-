@@ -212,8 +212,8 @@
     });
   });
 
-  // ─── PREMIUM BACKGROUND ANIMATION ───
-  // Rich, React-style floating geometric background
+  // ─── CREATIVE PORTFOLIO BACKGROUND ───
+  // Shapes themed around visual design, video editing & photography
   const canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;';
   document.body.prepend(canvas);
@@ -223,107 +223,184 @@
   resize();
   window.addEventListener('resize', resize);
 
-  // Mouse tracking for subtle interactivity
   let mouseX = w / 2, mouseY = h / 2;
   document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 
-  // Color palette matching Premium Dark theme
-  const colors = [
-    'rgba(176, 137, 104, 0.25)',  // Bronze
-    'rgba(27, 67, 50, 0.30)',      // Forest green
-    'rgba(176, 137, 104, 0.18)',  // Light bronze
-    'rgba(234, 234, 234, 0.10)',  // Faint white
-    'rgba(27, 67, 50, 0.20)',      // Light green
-  ];
+  // Niche-appropriate shapes for a visual/video portfolio
+  const SHAPES = ['filmFrame', 'aperture', 'playBtn', 'bezier', 'colorSwatch', 'filmStrip', 'penTool', 'viewfinder'];
 
-  // Shape types
-  const SHAPES = ['circle', 'ring', 'triangle', 'cross', 'dot'];
-
-  class Shape {
+  class CreativeShape {
     constructor() { this.init(); }
     init() {
       this.x = Math.random() * w;
       this.y = Math.random() * h;
-      this.size = Math.random() * 30 + 8;
+      this.size = Math.random() * 28 + 12;
       this.type = SHAPES[Math.floor(Math.random() * SHAPES.length)];
-      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.opacity = Math.random() * 0.15 + 0.08;
       this.rotation = Math.random() * Math.PI * 2;
-      this.rotSpeed = (Math.random() - 0.5) * 0.005;
-      this.vx = (Math.random() - 0.5) * 0.15;
-      this.vy = (Math.random() - 0.5) * 0.15;
-      this.baseX = this.x;
-      this.baseY = this.y;
-      this.amplitude = Math.random() * 40 + 10;
+      this.rotSpeed = (Math.random() - 0.5) * 0.004;
+      this.vx = (Math.random() - 0.5) * 0.12;
+      this.vy = (Math.random() - 0.5) * 0.12;
       this.phase = Math.random() * Math.PI * 2;
       this.phaseSpeed = Math.random() * 0.002 + 0.001;
+      // Color: bronze or green tint
+      this.isBronze = Math.random() > 0.5;
     }
-    update(t) {
+    getColor(alpha) {
+      return this.isBronze
+        ? `rgba(176, 137, 104, ${alpha || this.opacity})`
+        : `rgba(27, 67, 50, ${(alpha || this.opacity) * 1.5})`;
+    }
+    update() {
       this.phase += this.phaseSpeed;
       this.rotation += this.rotSpeed;
+      this.x += this.vx + Math.sin(this.phase) * 0.12;
+      this.y += this.vy + Math.cos(this.phase * 0.7) * 0.08;
 
-      // Organic floating motion
-      this.x += this.vx + Math.sin(this.phase) * 0.15;
-      this.y += this.vy + Math.cos(this.phase * 0.7) * 0.1;
-
-      // Subtle mouse parallax (shapes drift away from cursor slightly)
-      const dx = mouseX - this.x;
-      const dy = mouseY - this.y;
+      // Mouse parallax
+      const dx = mouseX - this.x, dy = mouseY - this.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 300) {
-        const force = (300 - dist) / 300 * 0.3;
-        this.x -= dx * force * 0.002;
-        this.y -= dy * force * 0.002;
+      if (dist < 250) {
+        const force = (250 - dist) / 250 * 0.25;
+        this.x -= dx * force * 0.003;
+        this.y -= dy * force * 0.003;
       }
 
-      // Wrap around edges
-      if (this.x < -50) this.x = w + 50;
-      if (this.x > w + 50) this.x = -50;
-      if (this.y < -50) this.y = h + 50;
-      if (this.y > h + 50) this.y = -50;
+      if (this.x < -60) this.x = w + 60;
+      if (this.x > w + 60) this.x = -60;
+      if (this.y < -60) this.y = h + 60;
+      if (this.y > h + 60) this.y = -60;
     }
     draw(ctx) {
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.rotation);
+      const s = this.size;
+      const col = this.getColor();
+      ctx.strokeStyle = col;
+      ctx.fillStyle = col;
+      ctx.lineWidth = 1.2;
 
       switch (this.type) {
-        case 'circle':
-          ctx.beginPath();
-          ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = this.color;
-          ctx.fill();
+        case 'filmFrame': {
+          // Movie film frame — rectangle with sprocket holes
+          ctx.strokeRect(-s, -s * 0.7, s * 2, s * 1.4);
+          // Sprocket holes
+          for (let i = -1; i <= 1; i++) {
+            ctx.fillRect(-s - 4, i * s * 0.4 - 2, 3, 4);
+            ctx.fillRect(s + 1, i * s * 0.4 - 2, 3, 4);
+          }
           break;
-        case 'ring':
+        }
+        case 'aperture': {
+          // Camera aperture — overlapping arcs
           ctx.beginPath();
-          ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-          ctx.strokeStyle = this.color;
-          ctx.lineWidth = 1.5;
+          ctx.arc(0, 0, s, 0, Math.PI * 2);
           ctx.stroke();
+          // Inner blades
+          for (let i = 0; i < 6; i++) {
+            const angle = (i / 6) * Math.PI * 2;
+            ctx.beginPath();
+            ctx.arc(
+              Math.cos(angle) * s * 0.3,
+              Math.sin(angle) * s * 0.3,
+              s * 0.55, angle + 0.5, angle + 1.5
+            );
+            ctx.stroke();
+          }
           break;
-        case 'triangle':
+        }
+        case 'playBtn': {
+          // Video play button — triangle inside circle
           ctx.beginPath();
-          const s = this.size;
-          ctx.moveTo(0, -s);
-          ctx.lineTo(s * 0.866, s * 0.5);
-          ctx.lineTo(-s * 0.866, s * 0.5);
+          ctx.arc(0, 0, s, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-s * 0.35, -s * 0.5);
+          ctx.lineTo(-s * 0.35, s * 0.5);
+          ctx.lineTo(s * 0.55, 0);
           ctx.closePath();
-          ctx.strokeStyle = this.color;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-          break;
-        case 'cross':
-          ctx.strokeStyle = this.color;
-          ctx.lineWidth = 1.2;
-          const c = this.size * 0.6;
-          ctx.beginPath(); ctx.moveTo(-c, 0); ctx.lineTo(c, 0); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(0, -c); ctx.lineTo(0, c); ctx.stroke();
-          break;
-        case 'dot':
-          ctx.beginPath();
-          ctx.arc(0, 0, this.size * 0.3, 0, Math.PI * 2);
-          ctx.fillStyle = this.color;
           ctx.fill();
           break;
+        }
+        case 'bezier': {
+          // Design bezier curve with control points
+          ctx.beginPath();
+          ctx.moveTo(-s, s * 0.5);
+          ctx.bezierCurveTo(-s * 0.3, -s * 1.2, s * 0.3, s * 1.2, s, -s * 0.5);
+          ctx.stroke();
+          // Control point dots
+          ctx.fillStyle = this.getColor(this.opacity * 1.5);
+          ctx.beginPath(); ctx.arc(-s, s * 0.5, 2.5, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(s, -s * 0.5, 2.5, 0, Math.PI * 2); ctx.fill();
+          // Control handles (dashed lines)
+          ctx.setLineDash([2, 3]);
+          ctx.beginPath(); ctx.moveTo(-s, s * 0.5); ctx.lineTo(-s * 0.3, -s * 1.2); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(s, -s * 0.5); ctx.lineTo(s * 0.3, s * 1.2); ctx.stroke();
+          ctx.setLineDash([]);
+          break;
+        }
+        case 'colorSwatch': {
+          // Color palette swatch — overlapping circles
+          const swatchColors = [
+            this.getColor(this.opacity * 0.8),
+            `rgba(176, 137, 104, ${this.opacity * 0.6})`,
+            `rgba(27, 67, 50, ${this.opacity * 0.9})`
+          ];
+          for (let i = 0; i < 3; i++) {
+            ctx.beginPath();
+            ctx.arc(i * s * 0.6 - s * 0.6, 0, s * 0.5, 0, Math.PI * 2);
+            ctx.fillStyle = swatchColors[i];
+            ctx.fill();
+          }
+          break;
+        }
+        case 'filmStrip': {
+          // Vertical film strip with perforations
+          ctx.strokeRect(-s * 0.4, -s, s * 0.8, s * 2);
+          for (let i = -2; i <= 2; i++) {
+            ctx.fillRect(-s * 0.55, i * s * 0.4 - 1.5, 4, 3);
+            ctx.fillRect(s * 0.35, i * s * 0.4 - 1.5, 4, 3);
+          }
+          // Inner frame lines
+          ctx.strokeRect(-s * 0.3, -s * 0.7, s * 0.6, s * 0.55);
+          ctx.strokeRect(-s * 0.3, s * 0.15, s * 0.6, s * 0.55);
+          break;
+        }
+        case 'penTool': {
+          // Pen tool cursor icon
+          ctx.beginPath();
+          ctx.moveTo(0, -s);
+          ctx.lineTo(s * 0.3, s * 0.4);
+          ctx.lineTo(0, s * 0.2);
+          ctx.lineTo(-s * 0.3, s * 0.4);
+          ctx.closePath();
+          ctx.stroke();
+          // Nib point
+          ctx.beginPath();
+          ctx.moveTo(-s * 0.15, s * 0.4);
+          ctx.lineTo(0, s);
+          ctx.lineTo(s * 0.15, s * 0.4);
+          ctx.fill();
+          break;
+        }
+        case 'viewfinder': {
+          // Camera viewfinder — corners of a frame
+          const v = s;
+          const corner = s * 0.35;
+          // Top-left
+          ctx.beginPath(); ctx.moveTo(-v, -v + corner); ctx.lineTo(-v, -v); ctx.lineTo(-v + corner, -v); ctx.stroke();
+          // Top-right
+          ctx.beginPath(); ctx.moveTo(v - corner, -v); ctx.lineTo(v, -v); ctx.lineTo(v, -v + corner); ctx.stroke();
+          // Bottom-left
+          ctx.beginPath(); ctx.moveTo(-v, v - corner); ctx.lineTo(-v, v); ctx.lineTo(-v + corner, v); ctx.stroke();
+          // Bottom-right
+          ctx.beginPath(); ctx.moveTo(v - corner, v); ctx.lineTo(v, v); ctx.lineTo(v, v - corner); ctx.stroke();
+          // Center crosshair
+          ctx.beginPath(); ctx.moveTo(-3, 0); ctx.lineTo(3, 0); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(0, -3); ctx.lineTo(0, 3); ctx.stroke();
+          break;
+        }
       }
       ctx.restore();
     }
@@ -331,30 +408,32 @@
 
   // Create shapes
   const shapes = [];
-  const shapeCount = Math.min(50, Math.floor(w * h / 25000));
-  for (let i = 0; i < shapeCount; i++) shapes.push(new Shape());
+  const shapeCount = Math.min(40, Math.floor(w * h / 30000));
+  for (let i = 0; i < shapeCount; i++) shapes.push(new CreativeShape());
 
-  // Connection lines between nearby shapes
+  // Connection lines — styled as timeline tracks
   function drawConnections() {
     for (let i = 0; i < shapes.length; i++) {
       for (let j = i + 1; j < shapes.length; j++) {
         const dx = shapes[i].x - shapes[j].x;
         const dy = shapes[i].y - shapes[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          const opacity = 0.12 * (1 - dist / 200);
+        if (dist < 180) {
+          const opacity = 0.08 * (1 - dist / 180);
           ctx.beginPath();
           ctx.moveTo(shapes[i].x, shapes[i].y);
           ctx.lineTo(shapes[j].x, shapes[j].y);
           ctx.strokeStyle = `rgba(176, 137, 104, ${opacity})`;
-          ctx.lineWidth = 0.5;
+          ctx.lineWidth = 0.6;
+          ctx.setLineDash([4, 4]);
           ctx.stroke();
+          ctx.setLineDash([]);
         }
       }
     }
   }
 
-  // Gradient orbs (large, blurred, slowly moving)
+  // Ambient gradient orbs
   class GradientOrb {
     constructor(color1, color2, size) {
       this.x = Math.random() * w;
@@ -362,14 +441,14 @@
       this.size = size;
       this.color1 = color1;
       this.color2 = color2;
-      this.vx = (Math.random() - 0.5) * 0.2;
-      this.vy = (Math.random() - 0.5) * 0.2;
+      this.vx = (Math.random() - 0.5) * 0.15;
+      this.vy = (Math.random() - 0.5) * 0.15;
       this.phase = Math.random() * Math.PI * 2;
     }
     update() {
-      this.phase += 0.003;
-      this.x += this.vx + Math.sin(this.phase) * 0.3;
-      this.y += this.vy + Math.cos(this.phase * 0.8) * 0.2;
+      this.phase += 0.002;
+      this.x += this.vx + Math.sin(this.phase) * 0.25;
+      this.y += this.vy + Math.cos(this.phase * 0.7) * 0.15;
       if (this.x < -this.size) this.x = w + this.size;
       if (this.x > w + this.size) this.x = -this.size;
       if (this.y < -this.size) this.y = h + this.size;
@@ -387,9 +466,9 @@
   }
 
   const orbs = [
-    new GradientOrb('rgba(27, 67, 50, 0.18)', 'rgba(27, 67, 50, 0)', 350),
-    new GradientOrb('rgba(176, 137, 104, 0.14)', 'rgba(176, 137, 104, 0)', 300),
-    new GradientOrb('rgba(27, 67, 50, 0.10)', 'rgba(27, 67, 50, 0)', 400),
+    new GradientOrb('rgba(27, 67, 50, 0.12)', 'rgba(27, 67, 50, 0)', 350),
+    new GradientOrb('rgba(176, 137, 104, 0.08)', 'rgba(176, 137, 104, 0)', 280),
+    new GradientOrb('rgba(27, 67, 50, 0.06)', 'rgba(27, 67, 50, 0)', 400),
   ];
 
   let time = 0;
@@ -397,14 +476,9 @@
     time++;
     ctx.clearRect(0, 0, w, h);
 
-    // Draw gradient orbs first (background layer)
     orbs.forEach(orb => { orb.update(); orb.draw(ctx); });
-
-    // Draw connections
     drawConnections();
-
-    // Draw shapes
-    shapes.forEach(s => { s.update(time); s.draw(ctx); });
+    shapes.forEach(s => { s.update(); s.draw(ctx); });
 
     requestAnimationFrame(animate);
   })();
