@@ -117,6 +117,31 @@
     </div>
   </section>
 
+  <!-- VIDEO SCROLL-TO-SCALE SECTION -->
+  <section id="video-scroll" style="position:relative;height:200vh;background:#0a0a0a;">
+    <div
+      style="position:sticky;top:0;width:100%;height:100vh;display:flex;align-items:center;justify-content:center;z-index:10;overflow:hidden;">
+      <div id="videoScaleWrapper"
+        style="will-change:transform;transform:scale(0.25);transform-origin:center center;transition:none;">
+        <video id="scrollVideo" src="SHOWREEL.mp4" muted loop autoplay playsinline preload="auto"
+          poster="assets/posters/SHOWREEL.webp"
+          style="width:80vw;max-width:900px;height:60vh;object-fit:cover;border-radius:16px;box-shadow:0 25px 80px rgba(0,0,0,0.6);"></video>
+        <!-- Overlay -->
+        <div
+          style="position:absolute;inset:0;background:rgba(0,0,0,0.15);backdrop-filter:blur(1px);border-radius:16px;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+          <div style="text-align:center;color:white;">
+            <h2 id="videoScrollTitle"
+              style="font-size:clamp(1.5rem,4vw,3.5rem);font-weight:700;margin-bottom:8px;opacity:1;transition:opacity 0.3s;">
+              Showreel</h2>
+            <p id="videoScrollSub"
+              style="font-size:clamp(0.8rem,1.5vw,1.2rem);color:rgba(255,255,255,0.7);opacity:1;transition:opacity 0.3s;">
+              Scroll to expand</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 3D PHOTOGRAPHY GALLERY -->
   <section id="photography-gallery" style="position:relative;width:100%;height:100vh;background:#000;overflow:hidden;">
     <div id="gallery-3d" style="width:100%;height:100%;"></div>

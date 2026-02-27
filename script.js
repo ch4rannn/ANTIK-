@@ -212,6 +212,37 @@
     });
   });
 
+  // ─── VIDEO SCROLL-TO-SCALE ANIMATION ───
+  const videoScrollSection = document.getElementById('video-scroll');
+  const videoScaleWrapper = document.getElementById('videoScaleWrapper');
+  const videoScrollTitle = document.getElementById('videoScrollTitle');
+  const videoScrollSub = document.getElementById('videoScrollSub');
+
+  if (videoScrollSection && videoScaleWrapper) {
+    const startScale = 0.25;
+
+    function updateVideoScale() {
+      const rect = videoScrollSection.getBoundingClientRect();
+      const sectionHeight = videoScrollSection.offsetHeight;
+      const windowHeight = window.innerHeight;
+
+      const scrolled = Math.max(0, -rect.top);
+      const maxScroll = sectionHeight - windowHeight;
+      const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
+
+      const scale = startScale + (progress * (1 - startScale));
+      videoScaleWrapper.style.transform = `scale(${scale})`;
+
+      // Fade out overlay text as video scales up
+      const textOpacity = Math.max(0, 1 - progress * 3);
+      if (videoScrollTitle) videoScrollTitle.style.opacity = textOpacity;
+      if (videoScrollSub) videoScrollSub.style.opacity = textOpacity;
+    }
+
+    window.addEventListener('scroll', updateVideoScale, { passive: true });
+    updateVideoScale();
+  }
+
   // ─── WEBGL LIGHTNING SHADER — HERO ONLY ───
   const heroSection = document.getElementById('hero');
   if (heroSection) {
