@@ -117,6 +117,23 @@
     </div>
   </section>
 
+  <!-- 3D PHOTOGRAPHY GALLERY -->
+  <section id="photography-gallery" style="position:relative;width:100%;height:100vh;background:#000;overflow:hidden;">
+    <div id="gallery-3d" style="width:100%;height:100%;"></div>
+    <div
+      style="position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;text-align:center;mix-blend-mode:exclusion;color:white;z-index:10;">
+      <h2
+        style="font-family:'Inter',sans-serif;font-size:clamp(2rem,6vw,5rem);font-weight:200;letter-spacing:-0.03em;line-height:1.1;">
+        <em style="font-style:italic;font-weight:300;">Photography</em>
+      </h2>
+    </div>
+    <div
+      style="position:absolute;bottom:20px;left:0;right:0;text-align:center;font-family:monospace;text-transform:uppercase;font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);z-index:10;pointer-events:none;">
+      <p>Scroll or use arrow keys to explore</p>
+      <p style="opacity:0.5;">Auto-play resumes after 3s</p>
+    </div>
+  </section>
+
   <!-- PORTFOLIO — VIDEOS & BRANDING -->
   <section class="portfolio" id="portfolio">
     <div class="container">
@@ -354,6 +371,7 @@
 
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="script.js" defer></script>
+  <script src="gallery-dist/gallery-widget.js" defer></script>
 </body>
 
 </html>
