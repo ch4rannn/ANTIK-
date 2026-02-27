@@ -299,7 +299,7 @@ function GalleryScene({
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (Date.now() - lastInteraction.current > 3000) {
+            if (Date.now() - lastInteraction.current > 5000) {
                 setAutoPlay(true);
             }
         }, 1000);
