@@ -259,43 +259,11 @@ function GalleryScene({
         }));
     }, [depthRange, spatialPositions, totalImages, visibleCount]);
 
-    const handleWheel = useCallback(
-        (event: WheelEvent) => {
-            event.preventDefault();
-            setScrollVelocity((prev) => prev + event.deltaY * 0.01 * speed);
-            setAutoPlay(false);
-            lastInteraction.current = Date.now();
-        },
-        [speed]
-    );
-
-    const handleKeyDown = useCallback(
-        (event: KeyboardEvent) => {
-            if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
-                setScrollVelocity((prev) => prev - 2 * speed);
-                setAutoPlay(false);
-                lastInteraction.current = Date.now();
-            } else if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
-                setScrollVelocity((prev) => prev + 2 * speed);
-                setAutoPlay(false);
-                lastInteraction.current = Date.now();
-            }
-        },
-        [speed]
-    );
+    // Gallery is auto-play only — no scroll/keyboard hijacking so page scrolls normally
 
     useEffect(() => {
-        const canvas = document.querySelector('#gallery-3d canvas');
-        if (canvas) {
-            canvas.addEventListener('wheel', handleWheel, { passive: false });
-            document.addEventListener('keydown', handleKeyDown);
-
-            return () => {
-                canvas.removeEventListener('wheel', handleWheel);
-                document.removeEventListener('keydown', handleKeyDown);
-            };
-        }
-    }, [handleWheel, handleKeyDown]);
+        setAutoPlay(true);
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
