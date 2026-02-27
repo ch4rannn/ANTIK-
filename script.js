@@ -237,7 +237,7 @@
   const videoScrollSub = document.getElementById('videoScrollSub');
 
   if (videoScrollSection && videoScaleWrapper) {
-    const startScale = 0.25;
+    const startScale = 0.35;
 
     function updateVideoScale() {
       const rect = videoScrollSection.getBoundingClientRect();
