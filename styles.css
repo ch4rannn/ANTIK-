@@ -1026,14 +1026,15 @@ h3 {
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(20px) saturate(1.2);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--dur)
+  transition: opacity 0.4s ease;
+  padding: 24px;
 }
 
 .modal-backdrop.active {
@@ -1042,67 +1043,102 @@ h3 {
 }
 
 .modal-content {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  max-width: 900px;
-  width: 95%;
+  background: linear-gradient(145deg, rgba(20, 22, 30, 0.97), rgba(10, 12, 18, 0.99));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 0;
+  max-width: 1000px;
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
-  transform: scale(0.95) translateY(20px);
-  transition: transform var(--dur) var(--ease)
+  transform: scale(0.92) translateY(30px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), 0 0 60px rgba(99, 102, 241, 0.06);
 }
 
 .modal-backdrop.active .modal-content {
   transform: scale(1) translateY(0)
 }
 
+.modal-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
 .modal-close {
   position: absolute;
   top: 16px;
-  right: 20px;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-size: 28px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 20px;
   cursor: pointer;
-  transition: color var(--dur);
+  transition: all 0.3s ease;
   z-index: 10;
-  line-height: 1
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-close:hover {
-  color: var(--text-primary)
-}
-
-.modal-title {
-  font-size: 24px;
-  margin-bottom: 12px
-}
-
-.modal-desc {
-  color: var(--text-secondary);
-  font-size: 15px;
-  line-height: 1.7;
-  margin-bottom: 24px
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
 }
 
 .modal-media {
   width: 100%;
-  border-radius: 12px;
-  overflow: hidden
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  background: #000;
 }
 
 .modal-media video {
   width: 100%;
-  border-radius: 12px
+  display: block;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 0;
 }
 
 .modal-media img {
   width: 100%;
-  border-radius: 12px
+  display: block;
+  border-radius: 0;
+}
+
+.modal-title {
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #fff;
+  letter-spacing: -0.02em;
+  padding: 24px 28px 0;
+}
+
+.modal-desc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0 28px 24px;
 }
 
 /* ═══════════ REVEAL ═══════════ */

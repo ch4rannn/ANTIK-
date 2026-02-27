@@ -233,31 +233,37 @@
   // ─── VIDEO SCROLL-TO-SCALE ANIMATION ───
   const videoScrollSection = document.getElementById('video-scroll');
   const videoScaleWrapper = document.getElementById('videoScaleWrapper');
-  const videoScrollTitle = document.getElementById('videoScrollTitle');
-  const videoScrollSub = document.getElementById('videoScrollSub');
 
   if (videoScrollSection && videoScaleWrapper) {
     const startScale = 0.35;
+    let ticking = false;
 
     function updateVideoScale() {
       const rect = videoScrollSection.getBoundingClientRect();
       const sectionHeight = videoScrollSection.offsetHeight;
       const windowHeight = window.innerHeight;
 
+      // How far the section top has scrolled past the viewport top
       const scrolled = Math.max(0, -rect.top);
       const maxScroll = sectionHeight - windowHeight;
-      const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
 
+      // Guard against division by zero
+      if (maxScroll <= 0) return;
+
+      const progress = Math.min(scrolled / maxScroll, 1);
       const scale = startScale + (progress * (1 - startScale));
-      videoScaleWrapper.style.transform = `scale(${scale})`;
-
-      // Fade out overlay text as video scales up
-      const textOpacity = Math.max(0, 1 - progress * 3);
-      if (videoScrollTitle) videoScrollTitle.style.opacity = textOpacity;
-      if (videoScrollSub) videoScrollSub.style.opacity = textOpacity;
+      videoScaleWrapper.style.transform = 'scale(' + scale + ')';
+      ticking = false;
     }
 
-    window.addEventListener('scroll', updateVideoScale, { passive: true });
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(updateVideoScale);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Run on load
     updateVideoScale();
   }
 
