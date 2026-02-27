@@ -15,6 +15,24 @@
     });
   }
 
+  // ─── VIDEO THUMBNAILS — SEEK TO 3 SECONDS ───
+  document.querySelectorAll('.card-media video').forEach(function (video) {
+    video.preload = 'metadata';
+    function seekTo3() {
+      if (video.duration >= 3) {
+        video.currentTime = 3;
+      } else if (video.duration > 0) {
+        video.currentTime = video.duration * 0.3;
+      }
+      video.removeEventListener('loadedmetadata', seekTo3);
+    }
+    if (video.readyState >= 1) {
+      seekTo3();
+    } else {
+      video.addEventListener('loadedmetadata', seekTo3);
+    }
+  });
+
   // ─── CURSOR GLOW ───
   const glow = null; // Disabled in premium theme
   if (glow && window.matchMedia('(pointer: fine)').matches) {
